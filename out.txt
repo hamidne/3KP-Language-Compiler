@@ -1,9 +1,13 @@
 reduced FROM integer  TO Type 
+create new var n
 reduced FROM ID  TO IDDim 
+create new var m
 reduced FROM ID  TO IDDim 
+create new var mat
 reduced FROM ID  TO IDDim 
 reduced FROM IDDim '['integerNumber']'  TO IDDim 
 reduced FROM IDDim '['integerNumber']'  TO IDDim 
+create new var mark
 reduced FROM ID  TO IDDim 
 reduced FROM IDDim '['integerNumber']'  TO IDDim 
 reduced FROM IDDim  TO IDDList 
@@ -15,12 +19,15 @@ reduced FROM VarDec TO VarDecs
 reduced FROM VarDecs ';' TO Dec 
 reduced FROM integer  TO Type 
 reduced FROM integer  TO Type 
+create new var a
 reduced FROM ID  TO IDList 
 reduced FROM Arg TO Type IDList  
 reduced FROM ArgList TO Arg 
 reduced FROM ArgList TO ArgsList 
 reduced FROM integer  TO Type 
+create new var i
 reduced FROM ID  TO IDDim 
+create new var j
 reduced FROM ID  TO IDDim 
 reduced FROM IDDim  TO IDDList 
 reduced FROM IDDim ',' IDDList   TO IDDList 
@@ -106,10 +113,15 @@ reduced FROM  TO DecList
 reduced FROM Dec  DecList TO DecList 
 reduced FROM Dec  DecList TO DecList 
 reduced FROM integer  TO Type 
+create new var n
 reduced FROM ID  TO IDDim 
+create new var m
 reduced FROM ID  TO IDDim 
+create new var i
 reduced FROM ID  TO IDDim 
+create new var j
 reduced FROM ID  TO IDDim 
+create new var c
 reduced FROM ID  TO IDDim 
 reduced FROM IDDim  TO IDDList 
 reduced FROM IDDim ',' IDDList   TO IDDList 

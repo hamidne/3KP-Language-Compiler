@@ -4,9 +4,18 @@ void yyerror (char *s);
 #include <stdlib.h>
 #include <string.h>
 
-char varCount = 0;
-char var[128][24];
-void checkVars(char *id);
+
+struct var
+{
+	char type;
+	char name[16];
+};
+
+char var_count = 0;
+char last_type = 0;
+struct var variables[128];
+
+void declare_variable(char *id);
 
 %}
 
@@ -107,7 +116,7 @@ Type:
 	;
 
 IDDim:
-	ID                        { checkVars($1); printf("reduced FROM ID  TO IDDim \n");}
+	ID                        { declare_variable($1); printf("reduced FROM ID  TO IDDim \n");}
 	| IDDim '['integerNumber']' {printf("reduced FROM IDDim '['integerNumber']'  TO IDDim \n");}
 	;
 
@@ -117,8 +126,8 @@ IDDList:
 	;
 
 IDList:
-	ID                      { checkVars($1); printf("reduced FROM ID  TO IDList \n");}    
-	| ID ',' IDList           { checkVars($1); printf("reduced FROM ID ',' IDList  TO IDList \n");}
+	ID                      { declare_variable($1); printf("reduced FROM ID  TO IDList \n");}    
+	| ID ',' IDList           { declare_variable($1); printf("reduced FROM ID ',' IDList  TO IDList \n");}
 	;
 
 FuncDec:
@@ -255,17 +264,15 @@ void yyerror (char *s) {
 	fprintf (stderr, "%s\n", s);
 }
 
-void checkVars(char *id) {	
+void declare_variable(char *id) {	
 	char find = 0;
-	for(char i = 0; i < varCount; i++)
-	{
-		if (strcmp(id, var[i]) == 0) {
+
+	for(char i = 0; i < var_count; i++)
+		if (strcmp(id, variables[i].name) == 0)
 			find = 1;
-		}
-	}
 	
 	if (find == 0) {
-		strcpy(var[varCount], id);
+		strcpy(variables[var_count++].name, id);
 		printf("create new var %s\n", id);
 	}
 	else
