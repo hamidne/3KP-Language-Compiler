@@ -3,6 +3,11 @@ void yyerror (char *s);
 #include <stdio.h>     /* C declarations used in actions */
 #include <stdlib.h>
 #include <string.h>
+
+char varCount = 0;
+char var[128][24];
+void checkVars(char *id);
+
 %}
 
 %union {
@@ -102,7 +107,7 @@ Type:
 	;
 
 IDDim:
-	ID                        {printf("reduced FROM ID  TO IDDim \n");}
+	ID                        { checkVars($1); printf("reduced FROM ID  TO IDDim \n");}
 	| IDDim '['integerNumber']' {printf("reduced FROM IDDim '['integerNumber']'  TO IDDim \n");}
 	;
 
@@ -112,8 +117,8 @@ IDDList:
 	;
 
 IDList:
-	ID                      {printf("reduced FROM ID  TO IDList \n");}    
-	| ID ',' IDList           {printf("reduced FROM ID ',' IDList  TO IDList \n");}
+	ID                      { checkVars($1); printf("reduced FROM ID  TO IDList \n");}    
+	| ID ',' IDList           { checkVars($1); printf("reduced FROM ID ',' IDList  TO IDList \n");}
 	;
 
 FuncDec:
@@ -248,4 +253,21 @@ int main (void) {
 
 void yyerror (char *s) {
 	fprintf (stderr, "%s\n", s);
-} 
+}
+
+void checkVars(char *id) {	
+	char find = 0;
+	for(char i = 0; i < varCount; i++)
+	{
+		if (strcmp(id, var[i]) == 0) {
+			find = 1;
+		}
+	}
+	
+	if (find == 0) {
+		strcpy(var[varCount], id);
+		printf("create new var %s\n", id);
+	}
+	else
+		printf("This name is used\n");
+}
