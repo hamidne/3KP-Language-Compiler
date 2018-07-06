@@ -39,7 +39,7 @@ moreLineComment "/*"
 ["].["]                            {return STRING_t;}
 ['].[']                            {return CHAR_t;}
 "program"                          {return program;}
-[0-9]+                 {yylval.num = atoi(yytext); return integerNumber;}
+[0-9]+                 {yylval.num = atoi(yytext); return IntNumber;}
 {letter}({letter}|{digit})*        {yylval.id = strdup(yytext); return ID;}
 [ \t\n]                ;
 {onlineComment}        ;
