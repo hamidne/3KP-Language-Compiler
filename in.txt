@@ -1,5 +1,6 @@
 program dfs;
 
+char rrrrr;
 int n,m,mat[100][100],mark[100];
 
 int dfs(int a){

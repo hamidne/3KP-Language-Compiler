@@ -109,10 +109,10 @@ VarDec:
 	;
 
 Type:
-	integer  {printf("reduced FROM integer  TO Type \n");}
-	| Double   {printf("reduced FROM Double  TO Type \n");}
-	| Boolean  {printf("reduced FROM Boolean  TO Type \n");}
-	| character  {printf("reduced FROM character  TO Type \n");}
+	integer  		{ last_type = 1; printf("reduced FROM integer  TO Type \n");}
+	| Double   		{ last_type = 2; printf("reduced FROM Double  TO Type \n");}
+	| Boolean  		{ last_type = 3; printf("reduced FROM Boolean  TO Type \n");}
+	| character  	{ last_type = 4; printf("reduced FROM character  TO Type \n");}
 	;
 
 IDDim:
@@ -272,8 +272,9 @@ void declare_variable(char *id) {
 			find = 1;
 	
 	if (find == 0) {
+		variables[var_count].type = last_type;
 		strcpy(variables[var_count++].name, id);
-		printf("create new var %s\n", id);
+		printf("create new var %s with type %c\n", id, last_type + 48);
 	}
 	else
 		printf("This name is used\n");
