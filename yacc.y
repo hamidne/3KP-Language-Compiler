@@ -11,9 +11,19 @@ struct var
 	char name[16];
 };
 
+
+struct func
+{
+	char *name;
+	char args[16];
+	char args_count;
+};
+
+
 char var_count = 0;
 char last_type = 0;
 struct var variables[128];
+struct func functions[128];
 
 void declare_variable(char *id);
 
@@ -81,7 +91,7 @@ void declare_variable(char *id);
 %%
 
 Program:
-	program ID ';' DecList '{'SList  '}' '.' {printf("reduced FROM program ID ';' DecList '{'SList  '}' '.' to Program \n");}
+	program ID ';' DecList '{'SList  '}' '.' { last_type=10; declare_variable($2);}
 	;
 
 DecList:
@@ -109,10 +119,10 @@ VarDec:
 	;
 
 Type:
-	integer  		{ last_type = 1; printf("reduced FROM integer  TO Type \n");}
-	| Double   		{ last_type = 2; printf("reduced FROM Double  TO Type \n");}
-	| Boolean  		{ last_type = 3; printf("reduced FROM Boolean  TO Type \n");}
-	| character  	{ last_type = 4; printf("reduced FROM character  TO Type \n");}
+	integer  		{ last_type = 1; }
+	| Double   		{ last_type = 2; }
+	| Boolean  		{ last_type = 3; }
+	| character  	{ last_type = 4; }
 	;
 
 IDDim:
@@ -154,21 +164,21 @@ SList:
 	;
 
 Stmt:
-	Exp                              {printf("reduced FROM Exp TO Stmt  \n");}
-	| VarDecs                          {printf("reduced FROM VarDecs TO Stmt  \n");}
-	| for_t lvalue '=' Exp '('valfor')' Exp do_t Block{printf("reduced FROM for_t lvalue '=' Exp '('valfor')' Exp do_t Block TO Stmt  \n");}
-	| while_t Exp do_t Block           {printf("reduced FROM while_t Exp do_t Block TO Stmt  \n");}  
-	| if_t Exp then_t Block            {printf("reduced FROM if_t Exp then_t Block TO Stmt  \n");}
-	| if_t Exp then_t Block else_t Block {printf("reduced FROM if_t Exp then_t Block else_t Block TO Stmt  \n");} 
-	| switch_t Exp of_t '{' Cases '}'  {printf("reduced FROM switch_t Exp of_t '{' Cases '}' TO Stmt  \n");}
-	| break_t                          {printf("reduced FROM break_t TO Stmt  \n");}
-	| repeat_t Block until_t Exp       {printf("reduced FROM repeat_t Block until_t Exp TO Stmt  \n");}
-	| continue_t                       {printf("reduced FROM continue_t TO Stmt  \n");}
-	| return_t Exp                     {printf("reduced FROM return_t Exp TO Stmt  \n");} 
-	| print_t Exp                      {printf("reduced FROM print_t Exp TO Stmt  \n");}
-	| write_t ExpPlus                  {printf("reduced FROM write_t ExpPlus TO Stmt  \n");} 
-	| read_t '(' lvalue ')'            {printf("reduced FROM read_t '(' lvalue ')' TO Stmt  \n");}
-	|                                  {printf("reduced FROM  TO Stmt  \n");}
+	Exp                              					{printf("reduced FROM Exp TO Stmt  \n");}
+	| VarDecs                          					{printf("reduced FROM VarDecs TO Stmt  \n");}
+	| for_t lvalue '=' Exp '('valfor')' Exp do_t Block	{printf("reduced FROM for_t lvalue '=' Exp '('valfor')' Exp do_t Block TO Stmt  \n");}
+	| while_t Exp do_t Block           					{printf("reduced FROM while_t Exp do_t Block TO Stmt  \n");}  
+	| if_t Exp then_t Block            					{printf("reduced FROM if_t Exp then_t Block TO Stmt  \n");}
+	| if_t Exp then_t Block else_t Block 				{printf("reduced FROM if_t Exp then_t Block else_t Block TO Stmt  \n");} 
+	| switch_t Exp of_t '{' Cases '}'  					{printf("reduced FROM switch_t Exp of_t '{' Cases '}' TO Stmt  \n");}
+	| break_t                          					{printf("reduced FROM break_t TO Stmt  \n");}
+	| repeat_t Block until_t Exp       					{printf("reduced FROM repeat_t Block until_t Exp TO Stmt  \n");}
+	| continue_t                       					{printf("reduced FROM continue_t TO Stmt  \n");}
+	| return_t Exp                     					{printf("reduced FROM return_t Exp TO Stmt  \n");} 
+	| print_t Exp                      					{printf("reduced FROM print_t Exp TO Stmt  \n");}
+	| write_t ExpPlus                  					{printf("reduced FROM write_t ExpPlus TO Stmt  \n");} 
+	| read_t '(' lvalue ')'            					{printf("reduced FROM read_t '(' lvalue ')' TO Stmt  \n");}
+	|                                  					{printf("reduced FROM  TO Stmt  \n");}
 	;
 
 valfor:
@@ -274,8 +284,8 @@ void declare_variable(char *id) {
 	if (find == 0) {
 		variables[var_count].type = last_type;
 		strcpy(variables[var_count++].name, id);
-		printf("create new var %s with type %c\n", id, last_type + 48);
+		printf(" -- create new var #%s# with type %c\n", id, last_type + 48);
 	}
 	else
-		printf("This name is used\n");
+		printf(" -- Syntax Error : #%s# is an already declared variable\n", id);
 }

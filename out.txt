@@ -1,16 +1,25 @@
-reduced FROM character  TO Type 
-create new var rrrrr with type 4reduced FROM ID  TO IDDim 
+ -- create new var #rrrrr# with type 4
+reduced FROM ID  TO IDDim 
 reduced FROM IDDim  TO IDDList 
 reduced FROM Type IDDList TO VarDec 
 reduced FROM VarDec TO VarDecs 
 reduced FROM VarDecs ';' TO Dec 
-reduced FROM integer  TO Type 
-create new var n with type 1reduced FROM ID  TO IDDim 
-create new var m with type 1reduced FROM ID  TO IDDim 
-create new var mat with type 1reduced FROM ID  TO IDDim 
+ -- create new var #n# with type 2
+reduced FROM ID  TO IDDim 
+reduced FROM IDDim  TO IDDList 
+reduced FROM Type IDDList TO VarDec 
+reduced FROM VarDec TO VarDecs 
+reduced FROM VarDecs ';' TO Dec 
+ -- Syntax Error : #n# is an already declared variable
+reduced FROM ID  TO IDDim 
+ -- create new var #m# with type 1
+reduced FROM ID  TO IDDim 
+ -- create new var #mat# with type 1
+reduced FROM ID  TO IDDim 
 reduced FROM IDDim '['integerNumber']'  TO IDDim 
 reduced FROM IDDim '['integerNumber']'  TO IDDim 
-create new var mark with type 1reduced FROM ID  TO IDDim 
+ -- create new var #mark# with type 1
+reduced FROM ID  TO IDDim 
 reduced FROM IDDim '['integerNumber']'  TO IDDim 
 reduced FROM IDDim  TO IDDList 
 reduced FROM IDDim ',' IDDList   TO IDDList 
@@ -19,15 +28,15 @@ reduced FROM IDDim ',' IDDList   TO IDDList
 reduced FROM Type IDDList TO VarDec 
 reduced FROM VarDec TO VarDecs 
 reduced FROM VarDecs ';' TO Dec 
-reduced FROM integer  TO Type 
-reduced FROM integer  TO Type 
-create new var a with type 1reduced FROM ID  TO IDList 
+ -- create new var #a# with type 1
+reduced FROM ID  TO IDList 
 reduced FROM Arg TO Type IDList  
 reduced FROM ArgList TO Arg 
 reduced FROM ArgList TO ArgsList 
-reduced FROM integer  TO Type 
-create new var i with type 1reduced FROM ID  TO IDDim 
-create new var j with type 1reduced FROM ID  TO IDDim 
+ -- create new var #i# with type 1
+reduced FROM ID  TO IDDim 
+ -- create new var #j# with type 1
+reduced FROM ID  TO IDDim 
 reduced FROM IDDim  TO IDDList 
 reduced FROM IDDim ',' IDDList   TO IDDList 
 reduced FROM Type IDDList TO VarDec 
@@ -112,16 +121,17 @@ reduced FROM  TO DecList
 reduced FROM Dec  DecList TO DecList 
 reduced FROM Dec  DecList TO DecList 
 reduced FROM Dec  DecList TO DecList 
-reduced FROM integer  TO Type 
-This name is used
+reduced FROM Dec  DecList TO DecList 
+ -- Syntax Error : #n# is an already declared variable
 reduced FROM ID  TO IDDim 
-This name is used
+ -- Syntax Error : #m# is an already declared variable
 reduced FROM ID  TO IDDim 
-This name is used
+ -- Syntax Error : #i# is an already declared variable
 reduced FROM ID  TO IDDim 
-This name is used
+ -- Syntax Error : #j# is an already declared variable
 reduced FROM ID  TO IDDim 
-create new var c with type 1reduced FROM ID  TO IDDim 
+ -- create new var #c# with type 1
+reduced FROM ID  TO IDDim 
 reduced FROM IDDim  TO IDDList 
 reduced FROM IDDim ',' IDDList   TO IDDList 
 reduced FROM IDDim ',' IDDList   TO IDDList 
@@ -251,4 +261,4 @@ reduced FROM Stmt ';' SList TO SList
 reduced FROM Stmt ';' SList TO SList  
 reduced FROM Stmt ';' SList TO SList  
 reduced FROM Stmt ';' SList TO SList  
-reduced FROM program ID ';' DecList '{'SList  '}' '.' to Program 
+ -- create new var #dfs# with type :
