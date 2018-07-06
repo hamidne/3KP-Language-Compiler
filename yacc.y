@@ -3,6 +3,10 @@ void yyerror (char *s);
 #include <stdio.h>     /* C declarations used in actions */
 #include <stdlib.h>
 #include <string.h>
+int cscope = 0;
+int declared[26];
+int scope[26]; 
+
 %}
 
 %union {int num; char *id;double doub;char *str; }
@@ -212,4 +216,3 @@ int main (void) {
 }
 
 void yyerror (char *s) {fprintf (stderr, "%s\n", s);} 
-
