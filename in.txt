@@ -1,24 +1,23 @@
 program dfs;
 
+char rrrrr;
+double n;
 int n,m,mat[100][100],mark[100];
 
 int dfs(int a){
 
-int i,j;
-mark[a]=1;
+    int i,j;
+    mark[a]=1;
 
-for i=0 (to) n do {
- 
-         if(mark[i] == 0 && mat[a][i] == 0) then {
- 
-                 dfs(i);
+    for i=0 (to) n do {
+    
+        if(mark[i] == 0 && mat[a][i] == 0) then {
+            dfs(i);
+        };
 
-};
-
-};
-
-return mark[a];
-
+    };
+    
+    return mark[a];
 };
 
 {
