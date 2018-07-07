@@ -1,6 +1,5 @@
-program fibw;
+prograsm fibw;
 int a , b , c,i;
-int a=12;
 {
 	i = 1;
 	a = 1;

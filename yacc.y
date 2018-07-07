@@ -94,16 +94,17 @@ int brace = 0;
 
 %left ADD SUB
 %left MUL devide
+
 %%
 
 Program:
 	program ID ';' DecList '{' open_b SList  '}' close_b '.' {printf("program ID > program \n"); final_END();}
-	| { handle_syntax_error(); }
+	| { handle_syntax_error(1); }
 	;
 
 DecList:
 	Dec  DecList {printf("Dec And DecList > DecList \n");}
-	|              {printf("No > DecList \n");}
+	|            {printf("No > DecList \n");}
 	;
 
 Dec:
@@ -320,11 +321,27 @@ void close_brace()
 
 void final_END()
 {
-	if(brace!=0) {
+	if( brace != 0 ) {
 		printf("Error:Wrong braces");
 	}
 }
 
-void handle_syntax_error() {
-	printf("-- Syntax Error: is not define\n");
+/*
+*	Error Handle Code:
+*	400: Program Define Error
+*
+*/
+
+void handle_syntax_error(int code) {
+	
+	switch (code)
+	{
+		case 400:
+			printf("-- Syntax Error: is not define\n");
+			break;
+	
+		default:
+			break;
+	}
+	
 }
