@@ -3,7 +3,6 @@ void yyerror (char *s);
 #include <stdio.h>     /* C declarations used in actions */
 #include <stdlib.h>
 #include <string.h>
-<<<<<<< HEAD
 
 
 struct var
@@ -28,12 +27,10 @@ struct func functions[128];
 
 void declare_variable(char *id);
 
-=======
 int cscope = 0;
 int declared[26];
 int scope[26]; 
 int brace = 0;
->>>>>>> multiVaribleUse
 %}
 
 %union {
@@ -98,11 +95,7 @@ int brace = 0;
 %%
 
 Program:
-<<<<<<< HEAD
-	program ID ';' DecList '{'SList  '}' '.' { last_type=10; declare_variable($2);}
-=======
 	program ID ';' DecList '{' open_b SList  '}' close_b '.' {printf("program ID > program \n");final_end();}
->>>>>>> multiVaribleUse
 	;
 
 DecList:
@@ -130,7 +123,6 @@ VarDec:
 	;
 
 Type:
-<<<<<<< HEAD
 	integer  		{ last_type = 1; }
 	| Double   		{ last_type = 2; }
 	| Boolean  		{ last_type = 3; }
@@ -139,18 +131,7 @@ Type:
 
 IDDim:
 	ID                        { declare_variable($1); printf("reduced FROM ID  TO IDDim \n");}
-	| IDDim '['integerNumber']' {printf("reduced FROM IDDim '['integerNumber']'  TO IDDim \n");}
-=======
-	integer          {printf("integer  > Type \n");}
-	| Double         {printf("Double  > Type \n");}
-	| Boolean        {printf("Boolean  > Type \n");}
-	| character      {printf("character  > Type \n");}
-	;
-
-IDDim:
-	ID                        {printf("ID  > IDDim \n");}
-	| IDDim '['IntNumber']' {printf("IDDim '['IntNumber']'  > IDDim \n");}
->>>>>>> multiVaribleUse
+	| IDDim '['IntNumber']' {printf("reduced FROM IDDim '['IntNumber']'  TO IDDim \n");}
 	;
 
 IDDList:
@@ -159,13 +140,8 @@ IDDList:
 	;
 
 IDList:
-<<<<<<< HEAD
-	ID                      { declare_variable($1); printf("reduced FROM ID  TO IDList \n");}    
-	| ID ',' IDList           { declare_variable($1); printf("reduced FROM ID ',' IDList  TO IDList \n");}
-=======
 	ID                      {printf("ID  > IDList \n");}    
 	| ID ',' IDList           {printf("ID  IDList  > IDList \n");}
->>>>>>> multiVaribleUse
 	;
 
 FuncDec:
@@ -198,23 +174,6 @@ SList:
 	;
 
 Stmt:
-<<<<<<< HEAD
-	Exp                              					{printf("reduced FROM Exp TO Stmt  \n");}
-	| VarDecs                          					{printf("reduced FROM VarDecs TO Stmt  \n");}
-	| for_t lvalue '=' Exp '('valfor')' Exp do_t Block	{printf("reduced FROM for_t lvalue '=' Exp '('valfor')' Exp do_t Block TO Stmt  \n");}
-	| while_t Exp do_t Block           					{printf("reduced FROM while_t Exp do_t Block TO Stmt  \n");}  
-	| if_t Exp then_t Block            					{printf("reduced FROM if_t Exp then_t Block TO Stmt  \n");}
-	| if_t Exp then_t Block else_t Block 				{printf("reduced FROM if_t Exp then_t Block else_t Block TO Stmt  \n");} 
-	| switch_t Exp of_t '{' Cases '}'  					{printf("reduced FROM switch_t Exp of_t '{' Cases '}' TO Stmt  \n");}
-	| break_t                          					{printf("reduced FROM break_t TO Stmt  \n");}
-	| repeat_t Block until_t Exp       					{printf("reduced FROM repeat_t Block until_t Exp TO Stmt  \n");}
-	| continue_t                       					{printf("reduced FROM continue_t TO Stmt  \n");}
-	| return_t Exp                     					{printf("reduced FROM return_t Exp TO Stmt  \n");} 
-	| print_t Exp                      					{printf("reduced FROM print_t Exp TO Stmt  \n");}
-	| write_t ExpPlus                  					{printf("reduced FROM write_t ExpPlus TO Stmt  \n");} 
-	| read_t '(' lvalue ')'            					{printf("reduced FROM read_t '(' lvalue ')' TO Stmt  \n");}
-	|                                  					{printf("reduced FROM  TO Stmt  \n");}
-=======
 	Exp                              {printf("Exp > Stmt  \n");}
 	| VarDecs                          {printf("VarDecs > Stmt  \n");}
 	| for_t lvalue '=' Exp '('valfor')' Exp do_t Block{printf("for_t lvalue '=' Exp '('valfor')' Exp do_t Block > Stmt  \n");}
@@ -230,7 +189,6 @@ Stmt:
 	| write_t ExpPlus                  {printf("write_t ExpPlus > Stmt  \n");} 
 	| read_t '(' lvalue ')'            {printf("read_t '(' lvalue ')' > Stmt  \n");}
 	|                                  {printf(" > Stmt  \n");}
->>>>>>> multiVaribleUse
 	;
 
 valfor:
@@ -323,7 +281,6 @@ int main (void) {
 }
 
 void yyerror (char *s) {
-<<<<<<< HEAD
 	fprintf (stderr, "%s\n", s);
 }
 
@@ -341,9 +298,8 @@ void declare_variable(char *id) {
 	}
 	else
 		printf(" -- Syntax Error : #%s# is an already declared variable\n", id);
-=======
-        final_end();
-        fprintf (stderr, "%s\n", s);} 
+}
+
 
 void open_brace(){
         brace++;
@@ -355,5 +311,4 @@ void final_end(){
         if(brace!=0){
                 printf("Error:Wrong braces");
         }
->>>>>>> multiVaribleUse
 }

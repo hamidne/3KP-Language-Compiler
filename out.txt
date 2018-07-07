@@ -1,127 +1,133 @@
  -- create new var #rrrrr# with type 4
 reduced FROM ID  TO IDDim 
-reduced FROM IDDim  TO IDDList 
+IDDim  > IDDList 
 reduced FROM Type IDDList TO VarDec 
-reduced FROM VarDec TO VarDecs 
-reduced FROM VarDecs ';' TO Dec 
+VarDec > VarDecs 
+VarDecs > Dec 
  -- create new var #n# with type 2
 reduced FROM ID  TO IDDim 
-reduced FROM IDDim  TO IDDList 
+IDDim  > IDDList 
 reduced FROM Type IDDList TO VarDec 
-reduced FROM VarDec TO VarDecs 
-reduced FROM VarDecs ';' TO Dec 
+VarDec > VarDecs 
+VarDecs > Dec 
  -- Syntax Error : #n# is an already declared variable
 reduced FROM ID  TO IDDim 
  -- create new var #m# with type 1
 reduced FROM ID  TO IDDim 
  -- create new var #mat# with type 1
 reduced FROM ID  TO IDDim 
-reduced FROM IDDim '['integerNumber']'  TO IDDim 
-reduced FROM IDDim '['integerNumber']'  TO IDDim 
+reduced FROM IDDim '['IntNumber']'  TO IDDim 
+reduced FROM IDDim '['IntNumber']'  TO IDDim 
  -- create new var #mark# with type 1
 reduced FROM ID  TO IDDim 
-reduced FROM IDDim '['integerNumber']'  TO IDDim 
-reduced FROM IDDim  TO IDDList 
-reduced FROM IDDim ',' IDDList   TO IDDList 
-reduced FROM IDDim ',' IDDList   TO IDDList 
-reduced FROM IDDim ',' IDDList   TO IDDList 
+reduced FROM IDDim '['IntNumber']'  TO IDDim 
+IDDim  > IDDList 
+IDDim  IDDList   > IDDList 
+IDDim  IDDList   > IDDList 
+IDDim  IDDList   > IDDList 
 reduced FROM Type IDDList TO VarDec 
-reduced FROM VarDec TO VarDecs 
-reduced FROM VarDecs ';' TO Dec 
- -- create new var #a# with type 1
-reduced FROM ID  TO IDList 
-reduced FROM Arg TO Type IDList  
-reduced FROM ArgList TO Arg 
-reduced FROM ArgList TO ArgsList 
+VarDec > VarDecs 
+VarDecs > Dec 
+ID  > IDList 
+Arg > Type IDList  
+ArgList > Arg 
+ArgList > ArgsList 
+open brace
  -- create new var #i# with type 1
 reduced FROM ID  TO IDDim 
  -- create new var #j# with type 1
 reduced FROM ID  TO IDDim 
-reduced FROM IDDim  TO IDDList 
-reduced FROM IDDim ',' IDDList   TO IDDList 
+IDDim  > IDDList 
+IDDim  IDDList   > IDDList 
 reduced FROM Type IDDList TO VarDec 
-reduced FROM VarDec TO VarDecs 
-reduced FROM VarDecs TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM IDD '[' Exp ']' TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM integerNumber TO Exp 
-reduced FROM lvalue '=' Exp TO Exp 
-reduced FROM Exp TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM integerNumber TO Exp 
-reduced FROM to_t  TO valfor  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM Exp TO IDD 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM IDD '[' Exp ']' TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM Qequal_t TO Logic 
-reduced FROM integerNumber TO Exp 
-reduced FROM and_t TO Logic 
-reduced FROM Exp TO IDD 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM IDD '[' Exp ']' TO IDD 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM IDD '[' Exp ']' TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM Qequal_t TO Logic 
-reduced FROM integerNumber TO Exp 
-reduced FROM Exp Logic Exp TO Exp 
-reduced FROM Exp Logic Exp TO Exp 
-reduced FROM Exp Logic Exp TO Exp 
-reduced FROM '('Exp')' TO Exp 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM Exp TO ExpPlus 
-reduced FROM ExpPlus TO ExpList 
-reduced FROM ID'('ExpList')'  TO Exp 
-reduced FROM Exp TO Stmt  
-reduced FROM  TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM '{' SList '} TO Block 
-reduced FROM if_t Exp then_t Block TO Stmt  
-reduced FROM  TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM '{' SList '} TO Block 
-reduced FROM for_t lvalue '=' Exp '('valfor')' Exp do_t Block TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM IDD '[' Exp ']' TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM return_t Exp TO Stmt  
-reduced FROM  TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Type ID '(' ArgsList ')' '{' SList '}' ';' TO FuncDec 
-reduced FROM  TO FuncDecs 
-reduced FROM FuncDec FuncDecs TO FuncDecs 
-reduced FROM FuncDecs TO Dec 
-reduced FROM  TO DecList 
-reduced FROM Dec  DecList TO DecList 
-reduced FROM Dec  DecList TO DecList 
-reduced FROM Dec  DecList TO DecList 
-reduced FROM Dec  DecList TO DecList 
+VarDec > VarDecs 
+VarDecs > Stmt  
+Exp > IDD 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+IDD '[' Exp ']' > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+to_t  > valfor  
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+open brace
+Exp > IDD 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+IDD '[' Exp ']' > IDD 
+IDD > lvalue 
+lvalue > Exp 
+Qequal_t > Logic 
+IntNumber > Exp 
+and_t > Logic 
+Exp > IDD 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+IDD '[' Exp ']' > IDD 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+IDD '[' Exp ']' > IDD 
+IDD > lvalue 
+lvalue > Exp 
+Qequal_t > Logic 
+IntNumber > Exp 
+Exp Logic Exp > Exp 
+Exp Logic Exp > Exp 
+Exp Logic Exp > Exp 
+'('Exp')' > Exp 
+open brace
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+Exp > ExpPlus 
+ExpPlus > ExpList 
+ID'('ExpList')'  > Exp 
+Exp > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+close brace
+'{' SList '} > Block 
+if_t Exp then_t Block > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+close brace
+'{' SList '} > Block 
+for_t lvalue '=' Exp '('valfor')' Exp do_t Block > Stmt  
+Exp > IDD 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+IDD '[' Exp ']' > IDD 
+IDD > lvalue 
+lvalue > Exp 
+return_t Exp > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+close brace
+Type ID '(' ArgsList ')' '{' SList '}' ';' > FuncDec 
+No > FuncDecs 
+FuncDec And FuncDecs > FuncDecs 
+FuncDecs > Dec 
+No > DecList 
+Dec And DecList > DecList 
+Dec And DecList > DecList 
+Dec And DecList > DecList 
+Dec And DecList > DecList 
+open brace
  -- Syntax Error : #n# is an already declared variable
 reduced FROM ID  TO IDDim 
  -- Syntax Error : #m# is an already declared variable
@@ -132,133 +138,144 @@ reduced FROM ID  TO IDDim
 reduced FROM ID  TO IDDim 
  -- create new var #c# with type 1
 reduced FROM ID  TO IDDim 
-reduced FROM IDDim  TO IDDList 
-reduced FROM IDDim ',' IDDList   TO IDDList 
-reduced FROM IDDim ',' IDDList   TO IDDList 
-reduced FROM IDDim ',' IDDList   TO IDDList 
-reduced FROM IDDim ',' IDDList   TO IDDList 
+IDDim  > IDDList 
+IDDim  IDDList   > IDDList 
+IDDim  IDDList   > IDDList 
+IDDim  IDDList   > IDDList 
+IDDim  IDDList   > IDDList 
 reduced FROM Type IDDList TO VarDec 
-reduced FROM VarDec TO VarDecs 
-reduced FROM VarDecs TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM integerNumber TO Exp 
-reduced FROM lvalue '=' Exp TO Exp 
-reduced FROM Exp TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM read_t '(' lvalue ')' TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM integerNumber TO Exp 
-reduced FROM to_t  TO valfor  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM integerNumber TO Exp 
-reduced FROM to_t  TO valfor  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM sub_t TO Aop 
-reduced FROM integerNumber TO Exp 
-reduced FROM Exp Aop Exp TO Exp 
-reduced FROM Exp TO IDD 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM IDD '[' Exp ']' TO IDD 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM IDD '[' Exp ']' TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM read_t '(' lvalue ')' TO Stmt  
-reduced FROM  TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM '{' SList '} TO Block 
-reduced FROM for_t lvalue '=' Exp '('valfor')' Exp do_t Block TO Stmt  
-reduced FROM  TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM '{' SList '} TO Block 
-reduced FROM for_t lvalue '=' Exp '('valfor')' Exp do_t Block TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM integerNumber TO Exp 
-reduced FROM to_t  TO valfor  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM Exp TO IDD 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM IDD '[' Exp ']' TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM integerNumber TO Exp 
-reduced FROM lvalue '=' Exp TO Exp 
-reduced FROM Exp TO Stmt  
-reduced FROM  TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM '{' SList '} TO Block 
-reduced FROM for_t lvalue '=' Exp '('valfor')' Exp do_t Block TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM integerNumber TO Exp 
-reduced FROM to_t  TO valfor  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM Exp TO IDD 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM IDD '[' Exp ']' TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM Qequal_t TO Logic 
-reduced FROM integerNumber TO Exp 
-reduced FROM Exp Logic Exp TO Exp 
-reduced FROM '('Exp')' TO Exp 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM Exp TO ExpPlus 
-reduced FROM ExpPlus TO ExpList 
-reduced FROM ID'('ExpList')'  TO Exp 
-reduced FROM Exp TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM add_t TO Aop 
-reduced FROM integerNumber TO Exp 
-reduced FROM Exp Aop Exp TO Exp 
-reduced FROM lvalue '=' Exp TO Exp 
-reduced FROM Exp TO Stmt  
-reduced FROM  TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM '{' SList '} TO Block 
-reduced FROM if_t Exp then_t Block TO Stmt  
-reduced FROM Exp TO IDD 
-reduced FROM IDD TO lvalue 
-reduced FROM lvalue TO Exp 
-reduced FROM '('Exp')' TO Exp 
-reduced FROM print_t Exp TO Stmt  
-reduced FROM  TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM '{' SList '} TO Block 
-reduced FROM for_t lvalue '=' Exp '('valfor')' Exp do_t Block TO Stmt  
-reduced FROM  TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
-reduced FROM Stmt ';' SList TO SList  
- -- create new var #dfs# with type :
+VarDec > VarDecs 
+VarDecs > Stmt  
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+read_t '(' lvalue ')' > Stmt  
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+to_t  > valfor  
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+open brace
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+to_t  > valfor  
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+sub_t > Aop 
+IntNumber > Exp 
+Exp Aop Exp > Exp 
+open brace
+Exp > IDD 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+IDD '[' Exp ']' > IDD 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+IDD '[' Exp ']' > IDD 
+IDD > lvalue 
+read_t '(' lvalue ')' > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+close brace
+'{' SList '} > Block 
+for_t lvalue '=' Exp '('valfor')' Exp do_t Block > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+close brace
+'{' SList '} > Block 
+for_t lvalue '=' Exp '('valfor')' Exp do_t Block > Stmt  
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+to_t  > valfor  
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+open brace
+Exp > IDD 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+IDD '[' Exp ']' > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+close brace
+'{' SList '} > Block 
+for_t lvalue '=' Exp '('valfor')' Exp do_t Block > Stmt  
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+to_t  > valfor  
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+open brace
+Exp > IDD 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+IDD '[' Exp ']' > IDD 
+IDD > lvalue 
+lvalue > Exp 
+Qequal_t > Logic 
+IntNumber > Exp 
+Exp Logic Exp > Exp 
+'('Exp')' > Exp 
+open brace
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+Exp > ExpPlus 
+ExpPlus > ExpList 
+ID'('ExpList')'  > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+add_t > Aop 
+IntNumber > Exp 
+Exp Aop Exp > Exp 
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+close brace
+'{' SList '} > Block 
+if_t Exp then_t Block > Stmt  
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+'('Exp')' > Exp 
+print_t Exp > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+close brace
+'{' SList '} > Block 
+for_t lvalue '=' Exp '('valfor')' Exp do_t Block > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+close brace
+program ID > program 
