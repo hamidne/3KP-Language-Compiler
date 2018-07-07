@@ -51,7 +51,6 @@ char *lastID;
 %token IN END
 %token EQUAL NEQUAL AND OR CHAR LESS GREATER LESSOREQ GREATEROREQ DIVIDE SUB ADD MOD MUL DOT
 
-%token <doub> REALNUM
 %token <id> ID
 %token <doub> REALNUM
 %token <num> IntNumber
@@ -258,16 +257,16 @@ void yyerror (char *s)
 void declare_variable(char *id) {	
 	char find = 0;
 	// printf("line number : %d", lineNumber);
-	for(char i = 0; i < var_count; i++)
+	char i;
+	for(i = 0; i < var_count; i++) {
 		if (strcmp(id, variables[i].name) == 0)
 			find = 1;
-		if(variables[i].type==5){
+		if(variables[i].type==5)
 			printf(" -- Syntax Error : #%s# is constant varible.can't change it\n", id);
-		}
 	}
 
 	
-	if (find == 0) {
+	if(find == 0) {
 		variables[var_count].type = last_type;
 		strcpy(variables[var_count++].name, id);
 		printf(" -- create new var #%s# with type %c\n", id, last_type + 48);
