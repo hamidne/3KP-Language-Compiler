@@ -1,5 +1,5 @@
 program fibw;
-int a , b , c,i;
+constant a ;
 {
 	i = 1;
 	a = 1;

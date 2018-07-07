@@ -1,15 +1,6 @@
- -- create new var #a# with type 1
-ID  > IDDim 
- -- create new var #b# with type 1
-ID  > IDDim 
- -- create new var #c# with type 1
-ID  > IDDim 
- -- create new var #i# with type 1
+Debugging:declare_variable called -- create new var #a# with type 5
 ID  > IDDim 
 IDDim  > IDDList 
-IDDim  IDDList   > IDDList 
-IDDim  IDDList   > IDDList 
-IDDim  IDDList   > IDDList 
 Type IDDList > VarDec 
 VarDec > VarDecs 
 VarDecs > Dec 
@@ -19,16 +10,22 @@ Dec And DecList > DecList
 Exp > IDD 
 IDD > lvalue 
 IntNumber > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
 IDD > lvalue 
 IntNumber > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
 IDD > lvalue 
 IntNumber > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
@@ -48,6 +45,8 @@ Exp > IDD
 IDD > lvalue 
 lvalue > Exp 
 Exp Aop Exp > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
@@ -55,6 +54,8 @@ IDD > lvalue
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
@@ -62,6 +63,8 @@ IDD > lvalue
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
@@ -72,6 +75,8 @@ lvalue > Exp
 ADD > Aop 
 IntNumber > Exp 
 Exp Aop Exp > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
  > SList  

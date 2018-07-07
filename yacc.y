@@ -31,6 +31,7 @@ int cscope = 0;
 int declared[26];
 int scope[26]; 
 int brace = 0;
+char *lastID;
 %}
 
 %union {
@@ -41,56 +42,17 @@ int brace = 0;
 }
 
 %start Program
-%token program
-%token INTEGER
-%token DOUBLE
-%token CHARACTER
-%token BOOLEAN
-%token CONSTANT
-%token FOR
-%token THEN
-%token STRING
-%token TO
-%token DOWN
-%token DO
-%token WHILE
-%token IF
-%token ELSE
-%token SWITCH
-%token OF
-%token BREAK
-%token REPEAT
-%token UNTIL
-%token CONTINUE
-%token RETURN
-%token READ
-%token WRITE
-%token PRINT
-%token CASE
-%token TRUE
-%token FALSE
-%token IN
-%token END
-%token EQUAL
-%token NEQUAL
-%token AND
-%token OR
-%token CHAR
-%token LESS
-%token GREATER
-%token LESSOREQ
-%token GREATEROREQ
-%token DIVIDE
-%token DOT
-%token ADD
-%token SUB
-%token MUL
-%token MOD
+%token program INTEGER DOUBLE CHARACTER BOOLEAN CONSTANT STRING
+%token FOR THEN DOWN TO DO WHILE SWITCH CASE OF
+%token IF ELSE TRUE FALSE
+%token BREAK REPEAT UNTIL CONTINUE RETURN
+%token READ WRITE PRINT
+%token IN END
+%token EQUAL NEQUAL AND OR CHAR LESS GREATER LESSOREQ GREATEROREQ DIVIDE SUB ADD MOD MUL DOT
+
 %token <doub> REALNUM
 %token <id> ID
 %token <num> IntNumber
-
-
 %left ADD SUB
 %left MUL devide
 %%
@@ -132,7 +94,7 @@ Type:
 	;
 
 IDDim:
-	ID                        { declare_variable($1); printf("ID  > IDDim \n");}
+	ID                        { declare_variable($1);lastID=$1; printf("ID  > IDDim \n");}
 	| IDDim '['IntNumber']' {printf("IDDim '['IntNumber']'  > IDDim \n");}
 	;
 
@@ -142,7 +104,7 @@ IDDList:
 	;
 
 IDList:
-	ID                      {printf("ID  > IDList \n");}    
+	ID                        {printf("ID  > IDList \n");}    
 	| ID ',' IDList           {printf("ID  IDList  > IDList \n");}
 	;
 
@@ -266,7 +228,7 @@ Exp:
     | STRING                        {printf("STRING > Exp \n");}
     | '('Exp')'                       {printf("'('Exp')' > Exp \n");}
     | Exp IN Range                  {printf("Exp IN Range > Exp \n");}
-    | lvalue '=' Exp                  {printf("lvalue '=' Exp > Exp \n");}//check_value_defined($1);
+    | lvalue '=' Exp                  	{constant_check(); printf("lvalue '=' Exp > Exp \n");}////////////////////////////////////////////////////////////////////////////////////
     | ID'('ExpList')'                 {printf("ID'('ExpList')'  > Exp \n");}
     ; 
 
@@ -287,11 +249,17 @@ void yyerror (char *s) {
 }
 
 void declare_variable(char *id) {	
+	printf("Debugging:declare_variable called");
 	char find = 0;
-
-	for(char i = 0; i < var_count; i++)
+	char i=0;
+	for( i = 0; i < var_count; i++){
 		if (strcmp(id, variables[i].name) == 0)
 			find = 1;
+		if(variables[i].type==5){
+			printf(" -- Syntax Error : #%s# is constant varible.can't change it\n", id);
+		}
+	}
+
 	
 	if (find == 0) {
 		variables[var_count].type = last_type;
@@ -299,10 +267,19 @@ void declare_variable(char *id) {
 		printf(" -- create new var #%s# with type %c\n", id, last_type + 48);
 	}
 	else
-		printf(" -- Syntax Error : #%s# is an already declared variable\n", id);
+			printf(" -- Syntax Error : #%s# is an already declared variable\n", id);
+		
+	
+	
 }
 
-
+void constant_check(){
+	printf("--Debugging:constant_check called\n");
+	for(char i = 0; i < var_count; i++)
+		if(strcmp(lastID, variables[i].name) == 0 && variables[i].type==5 )
+			printf("-- Syntax Error : #%s# is constant varible.can't change it\n", lastID);
+		
+}
 void open_brace(){
         brace++;
 }
