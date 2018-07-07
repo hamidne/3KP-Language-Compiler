@@ -1,16 +1,18 @@
-Debugging:declare_variable called -- create new var #a# with type 5
+--||-- lineNumber : 2
+ -- create new var #a# with type 1
 ID  > IDDim 
-Debugging:declare_variable called -- Syntax Error : #b# is constant varible.can't change it
- -- create new var #b# with type 5
+IDDim  > IDDList 
+Type IDDList > VarDec 
+VarDec > VarDecs 
+VarDecs > Dec 
+--||-- lineNumber : 3
+ -- Syntax Error : #a# is an already declared variable
 ID  > IDDim 
-Debugging:declare_variable called -- Syntax Error : #c# is constant varible.can't change it
- -- Syntax Error : #c# is constant varible.can't change it
- -- create new var #c# with type 5
+ -- create new var #b# with type 1
 ID  > IDDim 
-Debugging:declare_variable called -- Syntax Error : #i# is constant varible.can't change it
- -- Syntax Error : #i# is constant varible.can't change it
- -- Syntax Error : #i# is constant varible.can't change it
- -- create new var #i# with type 5
+ -- create new var #c# with type 1
+ID  > IDDim 
+ -- create new var #i# with type 1
 ID  > IDDim 
 IDDim  > IDDList 
 IDDim  IDDList   > IDDList 
@@ -19,37 +21,46 @@ IDDim  IDDList   > IDDList
 Type IDDList > VarDec 
 VarDec > VarDecs 
 VarDecs > Dec 
+--||-- lineNumber : 4
 No > DecList 
 Dec And DecList > DecList 
+Dec And DecList > DecList 
 -- open brace
+--||-- lineNumber : 5
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
---Debugging:constant_check called
--- Syntax Error : #i# is constant varible.can't change it
+&&& 		IntNumber > Exp 
 lvalue '=' Exp > Exp 
 Exp > Stmt  
+--||-- lineNumber : 6
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
---Debugging:constant_check called
--- Syntax Error : #i# is constant varible.can't change it
+&&& 		IntNumber > Exp 
 lvalue '=' Exp > Exp 
 Exp > Stmt  
+--||-- lineNumber : 7
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
---Debugging:constant_check called
--- Syntax Error : #i# is constant varible.can't change it
+&&& 		IntNumber > Exp 
 lvalue '=' Exp > Exp 
 Exp > Stmt  
+--||-- lineNumber : 8
+ -- create new var #erfan# with type 1
+ID  > IDDim 
+IDDim  > IDDList 
+Type IDDList > VarDec 
+VarDec > VarDecs 
+VarDecs > Stmt  
+--||-- lineNumber : 9
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 LESSOREQ > Logic 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 Exp Logic Exp > Exp 
+--||-- lineNumber : 10
 -- open brace
+--||-- lineNumber : 11
 Exp > IDD 
 IDD > lvalue 
 Exp > IDD 
@@ -60,40 +71,36 @@ Exp > IDD
 IDD > lvalue 
 lvalue > Exp 
 Exp Aop Exp > Exp 
---Debugging:constant_check called
--- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
+--||-- lineNumber : 12
 Exp > IDD 
 IDD > lvalue 
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
---Debugging:constant_check called
--- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
+--||-- lineNumber : 13
 Exp > IDD 
 IDD > lvalue 
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
---Debugging:constant_check called
--- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
+--||-- lineNumber : 14
 Exp > IDD 
 IDD > lvalue 
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 ADD > Aop 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 Exp Aop Exp > Exp 
---Debugging:constant_check called
--- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
+--||-- lineNumber : 15
  > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
@@ -102,7 +109,10 @@ Stmt ';' SList > SList
 -- close brace
 '{' SList '} > Block 
 WHILE Exp DO Block > Stmt  
+--||-- lineNumber : 16
+--||-- lineNumber : 17
  > SList  
+Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  

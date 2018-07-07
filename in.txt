@@ -1,15 +1,17 @@
 program fibw;
-constant a , b , c,i;
+int a;
+int a , b , c,i;
 {
 	i = 1;
 	a = 1;
 	b = 1;
+	int erfan;
 	while i <= 10 do
-{
-	c = a + b;
-	a = b;
-	b = c;
-	i = i + 1;
-};
+	{
+		c = a + b;
+		a = b;
+		b = c;
+		i = i + 1;
+	};
 
 }.

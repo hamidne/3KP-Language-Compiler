@@ -1,0 +1,11 @@
+program b;
+int a , b ,c;
+{
+	a = 1;
+	b = 2;
+	if a > b then
+		c = a + b
+	else
+		c = a - b;
+	
+}.
