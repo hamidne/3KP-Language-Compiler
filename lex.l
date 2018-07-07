@@ -9,37 +9,37 @@ letter {lower}|{upper}|[_]
 onlineComment "//".*
 moreLineComment "/*"
 %%
-"print"         {return PRINT;}
-"in"            {return IN;}
-"false"         {return FALSE;}
-"true"          {return TRUE;}
-"end"           {return END;}
-"case"          {return CASE;}
-"write"         {return WRITE;}
-"read"          {return READ;}
-"return"        {return RETURN;}
-"continue"      {return CONTINUE;}
-"until"         {return UNTIL;}
-"repeat"        {return REPEAT;}
-"break"         {return BREAK;}
-"of"            {return OF;}
-"switch"        {return SWITCH;}
-"else"          {return ELSE;}
-"then"          {return THEN;}
-"if"            {return IF;}
-"while"         {return WHILE;}
-"do"            {return DO;}
-"down"          {return DOWN;}
-"to"            {return TO;}
-"for"           {return FOR;}
-"int"           {return INTEGER;}
-"double"        {return DOUBLE;}
-"char"          {return CHARACTER;}
-"bool"          {return BOOLEAN;}
-"constant"      {return CONSTANT;}
-["].["]         {return STRING;}
-['].[']         {return CHAR;}
-"program"       {return program;}
+"print"                 {return PRINT;}
+"in"                    {return IN;}
+"false"                 {return FALSE;}
+"true"                  {return TRUE;}
+"end"                   {return END;}
+"case"                  {return CASE;}
+"write"                 {return WRITE;}
+"read"                  {return READ;}
+"return"                {return RETURN;}
+"continue"              {return CONTINUE;}
+"until"                 {return UNTIL;}
+"repeat"                {return REPEAT;}
+"break"                 {return BREAK;}
+"of"                    {return OF;}
+"switch"                {return SWITCH;}
+"else"                  {return ELSE;}
+"then"                  {return THEN;}
+"if"                    {return IF;}
+"while"                 {return WHILE;}
+"do"                    {return DO;}
+"down"                  {return DOWN;}
+"to"                    {return TO;}
+"for"                   {return FOR;}
+"int"                   {return INTEGER;}
+"double"                {return DOUBLE;}
+"char"                  {return CHARACTER;}
+"bool"                  {return BOOLEAN;}
+"constant"              {return CONSTANT;}
+["].["]                 {return STRING;}
+['].[']                 {return CHAR;}
+"program"               {return program;}
 [0-9]+                 {yylval.num = atoi(yytext); return IntNumber;}
 {letter}({letter}|{digit})*        {yylval.id = strdup(yytext); return ID;}
 [ \t\n]                ;
@@ -76,8 +76,7 @@ unput(c) ;
 ">"                                {return GREATER;}
 "<="                               {return LESSOREQ;}
 ">="                               {return GREATEROREQ;}
-.                      {}
+.                                   {printf("Syntax Error");}
 
 %%
 int yywrap (void) {return 1;}
-

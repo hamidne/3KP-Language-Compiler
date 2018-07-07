@@ -25,6 +25,7 @@ char last_type = 0;
 struct var variables[128];
 struct func functions[128];
 
+void handle_syntax_error();
 void declare_variable(char *id);
 
 int cscope = 0;
@@ -96,7 +97,8 @@ int brace = 0;
 %%
 
 Program:
-	program ID ';' DecList '{' open_b SList  '}' close_b '.' {printf("program ID > program \n");final_END();}
+	program ID ';' DecList '{' open_b SList  '}' close_b '.' {printf("program ID > program \n"); final_END();}
+	| { handle_syntax_error(); }
 	;
 
 DecList:
@@ -278,15 +280,18 @@ Block:
 %%
 
 
-int main (void) {
+int main (void)
+{
 	return yyparse ( );
 }
 
-void yyerror (char *s) {
+void yyerror (char *s)
+{
 	fprintf (stderr, "%s\n", s);
 }
 
-void declare_variable(char *id) {	
+void declare_variable(char *id)
+{	
 	char find = 0;
 
 	for(char i = 0; i < var_count; i++)
@@ -303,14 +308,23 @@ void declare_variable(char *id) {
 }
 
 
-void open_brace(){
+void open_brace()
+{
         brace++;
 }
-void close_brace(){
+
+void close_brace()
+{
         brace--;
 }
-void final_END(){
-        if(brace!=0){
-                printf("Error:Wrong braces");
-        }
+
+void final_END()
+{
+	if(brace!=0) {
+		printf("Error:Wrong braces");
+	}
+}
+
+void handle_syntax_error() {
+	printf("-- Syntax Error: is not define\n");
 }
