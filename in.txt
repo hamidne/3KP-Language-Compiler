@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 prograsm fibw;
 int a , b , c,i;
-=======
-program fibw;
-constant a ;
->>>>>>> check-var-defined
 {
 	i = 1;
 	a = 1;
