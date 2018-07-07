@@ -15,11 +15,11 @@ struct var
 struct func
 {
 	char *name;
-	char args[16];
+	char *args[10];
 	char args_count;
 };
 
-
+char *reserverFunction[20];
 char var_count = 0;
 char last_type = 0;
 struct var variables[128];
@@ -33,6 +33,7 @@ int declared[26];
 int scope[26]; 
 int brace = 0;
 char *lastID;
+int functionCounter =0;
 %}
 
 %union {
@@ -112,7 +113,7 @@ IDList:
 	;
 
 FuncDec:
-        Type ID '(' ArgsList ')' '{' open_b SList '}' close_b ';' {printf("Type ID '(' ArgsList ')' '{' SList '}' ';' > FuncDec \n");}
+        Type ID '(' ArgsList ')' {add_function($2);} '{' open_b SList '}' close_b ';' {printf("Type ID '(' ArgsList ')' '{' SList '}' ';' > FuncDec \n");}
 	//Type ID '(' ArgsList ')' '{' open_b SList '}'  ';' {printf("reduced FROM Type ID '(' ArgsList ')' '{' SList '}' ';' TO FuncDec \n");}
 	;
 open_b:
@@ -254,7 +255,6 @@ void yyerror (char *s)
 }
 
 void declare_variable(char *id) {	
-	printf("Debugging:declare_variable called");
 	char find = 0;
 	char i=0;
 	for( i = 0; i < var_count; i++){
@@ -279,7 +279,6 @@ void declare_variable(char *id) {
 }
 
 void constant_check(){
-	printf("--Debugging:constant_check called\n");
 	for(char i = 0; i < var_count; i++)
 		if(strcmp(lastID, variables[i].name) == 0 && variables[i].type==5 )
 			printf("-- Syntax Error : #%s# is constant varible.can't change it\n", lastID);
@@ -318,5 +317,25 @@ void handle_syntax_error(int code) {
 		default:
 			break;
 	}
+	
+}
+
+void add_function(char *id){
+	int find =0;
+	printf("--Debugging:add_function called \n");
+	
+		for(char  i = 0; i < functionCounter; i++){
+		if (strcmp(id, reserverFunction[i]) == 0)
+			find = 1;
+
+	}
+
+	
+	if (find == 0) {
+		reserverFunction[functionCounter]=id;
+		functionCounter++;
+	}
+	else
+			printf(" -- Syntax Error : #%s# is an already declared function\n", id);
 	
 }
