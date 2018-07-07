@@ -181,7 +181,7 @@ SList:
 Stmt:
 	Exp                              						{printf("Exp > Stmt  \n");}
 	| VarDecs                          						{printf("VarDecs > Stmt  \n");}
-	| FOR lvalue '=' Exp '('valfor')' Exp DO Block			{printf("FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  \n");}
+	| FOR lvalue '=' Exp valfor Exp DO Block			{printf("FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  \n");}
 	| WHILE Exp DO Block           							{printf("WHILE Exp DO Block > Stmt  \n");}  
 	| IF Exp THEN Block            							{printf("IF Exp THEN Block > Stmt  \n");}
 	| IF Exp THEN Block ELSE Block 							{printf("IF Exp THEN Block ELSE Block > Stmt  \n");} 
@@ -257,25 +257,26 @@ lvalue:
 	;
 
 Exp:
-	  IntNumber						{printf("&&& 		IntNumber > Exp \n");}
-    | lvalue         				{printf("lvalue > Exp \n");}
+	ID								{ printf("/*/-*//-*/*"); }
+    | lvalue         				{ printf("lvalue > Exp \n");}
     | REALNUM
-    | CHAR           				{printf("CHAR > Exp \n");}
-    | TRUE           				{printf("TRUE > Exp \n");}
-    | FALSE          				{printf("FALSE > Exp \n");}
-    | Exp Aop Exp    				{printf("Exp Aop Exp > Exp \n");}
-    | Exp Logic Exp  				{printf("Exp Logic Exp > Exp \n");}
-    | '-' Exp        				{printf("'-' Exp  > Exp \n");}
-    | STRING         				{printf("STRING > Exp \n");}
-    | '('Exp')'      				{printf("'('Exp')' > Exp \n");}
-    | Exp IN Range   				{printf("Exp IN Range > Exp \n");}
-    | lvalue '=' Exp 				{printf("lvalue '=' Exp > Exp \n"); }//check_value_defined($1);
-    | ID'('ExpList')'				{printf("ID'('ExpList')'  > Exp \n");}
+    | CHAR           				{ printf("CHAR > Exp \n");}
+    | TRUE           				{ printf("TRUE > Exp \n");}
+    | FALSE          				{ printf("FALSE > Exp \n");}
+    | Exp Aop Exp    				{ printf("Exp Aop Exp > Exp \n");}
+    | Exp Logic Exp  				{ printf("Exp Logic Exp > Exp \n");}
+    | '-' Exp        				{ printf("'-' Exp  > Exp \n");}
+    | STRING         				{ printf("STRING > Exp \n");}
+    | '('Exp')'      				{ printf("'('Exp')' > Exp \n");}
+    | Exp IN Range   				{ printf("Exp IN Range > Exp \n");}
+    | lvalue '=' Exp 				{ printf("lvalue '=' Exp > Exp \n"); /*check_value_defined($1);*/ }
+    | ID'('ExpList')'				{ printf("ID'('ExpList')'  > Exp \n");}
+	| IntNumber						{ printf("IntNumber > Exp \n");}
     ; 
 
 Block:
-	'{' open_b SList '}' close_b	{printf("'{' SList '} > Block \n");}
-	| Stmt                      	{printf("Stmt > Block \n");}
+	'{' open_b SList '}' close_b	{ printf("'{' SList '} > Block \n");}
+	| Stmt                      	{ printf("Stmt > Block \n");}
 	; 
 
 %%
