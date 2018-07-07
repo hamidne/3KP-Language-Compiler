@@ -60,23 +60,23 @@ unput(c) ;
 
 }
 ([-|+]?{digit}+)?"."{digit}+|([-|+]?{digit}+)?"."{digit}+([e|E][-+]?{digit}+) {yylval.doub = atof(yytext); return REALNUM;}
-[+]                                {return ADD;}
-[-]                                {return SUB;}
-[*]                                {return MUL;}
-[%]                               {return MOD;} 
-"/"                               {return DIVIDE;} 
-[=;:{}.,()]             	   {return yytext[0];}
-"["|"]"                            {return yytext[0];}
-"=="                               {return EQUAL;}
-".."                               {return DOT;}
-"!="                               {return NEQUAL;}
-"&&"                               {return AND;}
-"||"                               {return OR;}
-"<"                                {return LESS;}
-">"                                {return GREATER;}
-"<="                               {return LESSOREQ;}
-">="                               {return GREATEROREQ;}
-.                                   {printf("Syntax Error");}
+[+]                             {return ADD;}
+[-]                             {return SUB;}
+[*]                             {return MUL;}
+[%]                             {return MOD;} 
+"/"                             {return DIVIDE;} 
+[=;:{}.,()]                     {return yytext[0];}
+"["|"]"                         {return yytext[0];}
+"=="                            {return EQUAL;}
+".."                            {return DOT;}
+"!="                            {return NEQUAL;}
+"&&"                            {return AND;}
+"||"                            {return OR;}
+"<"                             {return LESS;}
+">"                             {return GREATER;}
+"<="                            {return LESSOREQ;}
+">="                            {return GREATEROREQ;}
+.                               {;}
 
 %%
 int yywrap (void) {return 1;}

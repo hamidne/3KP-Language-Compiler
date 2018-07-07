@@ -99,7 +99,7 @@ int brace = 0;
 
 Program:
 	program ID ';' DecList '{' open_b SList  '}' close_b '.' {printf("program ID > program \n"); final_END();}
-	| { handle_syntax_error(1); }
+	| { handle_syntax_error(400); }
 	;
 
 DecList:
@@ -135,13 +135,13 @@ Type:
 	;
 
 IDDim:
-	ID                        { declare_variable($1); printf("ID  > IDDim \n");}
-	| IDDim '['IntNumber']' {printf("IDDim '['IntNumber']'  > IDDim \n");}
+	ID                     									{ declare_variable($1); printf("ID  > IDDim \n");}
+	| IDDim '['IntNumber']'									{printf("IDDim '['IntNumber']'  > IDDim \n");}
 	;
 
 IDDList:
-	IDDim                  {printf("IDDim  > IDDList \n");}
-	| IDDim ',' IDDList      {printf("IDDim  IDDList   > IDDList \n");}
+	IDDim              										{printf("IDDim  > IDDList \n");}
+	| IDDim ',' IDDList										{printf("IDDim  IDDList   > IDDList \n");}
 	;
 
 IDList:
@@ -160,13 +160,13 @@ close_b:
                {printf("-- close brace\n");close_brace();}
         ;
 ArgsList:
-	ArgList {printf("ArgList > ArgsList \n");}
-	|        {printf(" > ArgsList \n");}
+	ArgList													{printf("ArgList > ArgsList \n");}
+	|      													{printf(" > ArgsList \n");}
 	;
 
 ArgList:
-	Arg               {printf("ArgList > Arg \n");}
-	| Arg ';' ArgList   {printf("Arg ';' ArgList > Arg \n");}
+	Arg              										{printf("ArgList > Arg \n");}
+	| Arg ';' ArgList										{printf("Arg ';' ArgList > Arg \n");}
 	;
 
 Arg:
@@ -216,66 +216,66 @@ Case:
 	;
   
 Logic:
-	AND                            {printf("AND > Logic \n");}
-	| OR                            {printf("OR > Logic \n");}
-	| ""                              {printf("> Logic \n");}
-	| '='                             {printf("'=' > Logic \n");}
-	| EQUAL                        {printf("EQUAL > Logic \n");}   
-	| NEQUAL                        {printf("NEQUAL > Logic \n");}
-	|LESS                       {printf("LESS > Logic \n");}
-	|GREATER                    {printf("GREATER > Logic \n");}
-	|LESSOREQ                {printf("LESSOREQ > Logic \n");}
-	|GREATEROREQ             {printf("GREATEROREQ > Logic \n");}
+	  AND         				{printf("AND > Logic \n");}
+	| OR        				{printf("OR > Logic \n");}
+	| ""        				{printf("> Logic \n");}
+	| '='       				{printf("'=' > Logic \n");}
+	| EQUAL     				{printf("EQUAL > Logic \n");}   
+	| NEQUAL    				{printf("NEQUAL > Logic \n");}
+	| LESS       				{printf("LESS > Logic \n");}
+	| GREATER    				{printf("GREATER > Logic \n");}
+	| LESSOREQ   				{printf("LESSOREQ > Logic \n");}
+	| GREATEROREQ				{printf("GREATEROREQ > Logic \n");}
 	;
 
 Aop:
-	ADD                            {printf("ADD > Aop \n");}
-    | SUB                            {printf("SUB > Aop \n");}
-    | MUL                            {printf("MUL > Aop \n");}
-    | MOD                            {printf("MOD > Aop \n");}
-    | DIVIDE                            {printf("DIVIDE > Aop \n");}
+	  ADD   					{printf("ADD > Aop \n");}
+    | SUB   					{printf("SUB > Aop \n");}
+    | MUL   					{printf("MUL > Aop \n");}
+    | MOD   					{printf("MOD > Aop \n");}
+    | DIVIDE					{printf("DIVIDE > Aop \n");}
     ;
  
 ExpList:
-	ExpPlus                        {printf("ExpPlus > ExpList \n");}
-	|                               {printf(" > ExpList \n");}
+	ExpPlus						{printf("ExpPlus > ExpList \n");}
+	|      						{printf(" > ExpList \n");}
 	;
 
 ExpPlus:
 	Exp                           {printf("Exp > ExpPlus \n");}
-	| Exp ',' ExpPlus              {printf("Exp ',' ExpPlus > ExpPlus \n");}
+	| Exp ',' ExpPlus             {printf("Exp ',' ExpPlus > ExpPlus \n");}
 	;
 
 IDD:
-	ID                               {printf("Exp > IDD \n");} 
-    | IDD '[' Exp ']'                 {printf("IDD '[' Exp ']' > IDD \n");} 
+	ID               				{printf("Exp > IDD \n");} 
+    | IDD '[' Exp ']'				{printf("IDD '[' Exp ']' > IDD \n");} 
     ;
 
 lvalue:
-	ID                           {printf("ID > lvalue \n");} 
-	| IDD                          {printf("IDD > lvalue \n");} 
+	ID   							{printf("ID > lvalue \n");} 
+	| IDD							{printf("IDD > lvalue \n");} 
 	;
 
 Exp:
-	IntNumber                    {printf("IntNumber > Exp \n");}
-    |REALNUM
-    | lvalue                          {printf("lvalue > Exp \n");}
-    | CHAR                          {printf("CHAR > Exp \n");}
-    | TRUE                          {printf("TRUE > Exp \n");}
-    | FALSE                         {printf("FALSE > Exp \n");}
-    | Exp Aop Exp                     {printf("Exp Aop Exp > Exp \n");}
-    | Exp Logic Exp                   {printf("Exp Logic Exp > Exp \n");}
-    | '-' Exp                         {printf("'-' Exp  > Exp \n");}
-    | STRING                        {printf("STRING > Exp \n");}
-    | '('Exp')'                       {printf("'('Exp')' > Exp \n");}
-    | Exp IN Range                  {printf("Exp IN Range > Exp \n");}
-    | lvalue '=' Exp                  {printf("lvalue '=' Exp > Exp \n");}//check_value_defined($1);
-    | ID'('ExpList')'                 {printf("ID'('ExpList')'  > Exp \n");}
+	  IntNumber						{printf("IntNumber > Exp \n");}
+    | REALNUM
+    | lvalue         				{printf("lvalue > Exp \n");}
+    | CHAR           				{printf("CHAR > Exp \n");}
+    | TRUE           				{printf("TRUE > Exp \n");}
+    | FALSE          				{printf("FALSE > Exp \n");}
+    | Exp Aop Exp    				{printf("Exp Aop Exp > Exp \n");}
+    | Exp Logic Exp  				{printf("Exp Logic Exp > Exp \n");}
+    | '-' Exp        				{printf("'-' Exp  > Exp \n");}
+    | STRING         				{printf("STRING > Exp \n");}
+    | '('Exp')'      				{printf("'('Exp')' > Exp \n");}
+    | Exp IN Range   				{printf("Exp IN Range > Exp \n");}
+    | lvalue '=' Exp 				{printf("lvalue '=' Exp > Exp \n"); }//check_value_defined($1);
+    | ID'('ExpList')'				{printf("ID'('ExpList')'  > Exp \n");}
     ; 
 
 Block:
-	'{' open_b SList '}' close_b                {printf("'{' SList '} > Block \n");}
-	| Stmt                          {printf("Stmt > Block \n");}
+	'{' open_b SList '}' close_b	{printf("'{' SList '} > Block \n");}
+	| Stmt                      	{printf("Stmt > Block \n");}
 	; 
 
 %%

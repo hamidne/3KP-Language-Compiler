@@ -1,1 +1,98 @@
--- Syntax Error: is not define
+ -- create new var #a# with type 1
+ID  > IDDim 
+ -- create new var #b# with type 1
+ID  > IDDim 
+ -- create new var #c# with type 1
+ID  > IDDim 
+ -- create new var #i# with type 1
+ID  > IDDim 
+IDDim  > IDDList 
+IDDim  IDDList   > IDDList 
+IDDim  IDDList   > IDDList 
+IDDim  IDDList   > IDDList 
+Type IDDList > VarDec 
+VarDec > VarDecs 
+VarDecs > Dec 
+No > DecList 
+Dec And DecList > DecList 
+-- open brace
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+lvalue '=' Exp > Exp 
+--//  CheckVariables 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+lvalue '=' Exp > Exp 
+--//  CheckVariables 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+lvalue '=' Exp > Exp 
+--//  CheckVariables 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+LESSOREQ > Logic 
+IntNumber > Exp 
+Exp Logic Exp > Exp 
+-- open brace
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+ADD > Aop 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+Exp Aop Exp > Exp 
+lvalue '=' Exp > Exp 
+--//  CheckVariables 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+lvalue '=' Exp > Exp 
+--//  CheckVariables 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+lvalue '=' Exp > Exp 
+--//  CheckVariables 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+ADD > Aop 
+IntNumber > Exp 
+Exp Aop Exp > Exp 
+lvalue '=' Exp > Exp 
+--//  CheckVariables 
+Exp > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+-- close brace
+'{' SList '} > Block 
+WHILE Exp DO Block > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+-- close brace
+program ID > program 
