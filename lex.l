@@ -9,35 +9,35 @@ letter {lower}|{upper}|[_]
 onlineComment "//".*
 moreLineComment "/*"
 %%
-"print"         {return print_t;}
-"in"            {return in_t;}
-"false"         {return false_t;}
-"true"          {return true_t;}
-"end"           {return end_t;}
-"case"          {return case_t;}
-"write"         {return write_t;}
-"read"          {return read_t;}
-"return"        {return return_t;}
-"continue"      {return continue_t;}
-"until"         {return until_t;}
-"repeat"        {return repeat_t;}
-"break"         {return break_t;}
-"of"            {return of_t;}
-"switch"        {return switch_t;}
-"else"          {return else_t;}
-"then"          {return then_t;}
-"if"            {return if_t;}
-"while"         {return while_t;}
-"do"            {return do_t;}
-"down"          {return down_t;}
-"to"            {return to_t;}
-"for"           {return for_t;}
-"int"           {return integer;}
-"double"        {return Double;}
-"char"          {return character;}
-"bool"          {return Boolean;}
-["].["]         {return STRING_t;}
-['].[']         {return CHAR_t;}
+"print"         {return PRINT;}
+"in"            {return IN;}
+"false"         {return FALSE;}
+"true"          {return TRUE;}
+"end"           {return END;}
+"case"          {return CASE;}
+"write"         {return WRITE;}
+"read"          {return READ;}
+"return"        {return RETURN;}
+"continue"      {return CONTINUE;}
+"until"         {return UNTIL;}
+"repeat"        {return REPEAT;}
+"break"         {return BREAK;}
+"of"            {return OF;}
+"switch"        {return SWITCH;}
+"else"          {return ELSE;}
+"then"          {return THEN;}
+"if"            {return IF;}
+"while"         {return WHILE;}
+"do"            {return DO;}
+"down"          {return DOWN;}
+"to"            {return TO;}
+"for"           {return FOR;}
+"int"           {return INTEGER;}
+"double"        {return DOUBLE;}
+"char"          {return CHARACTER;}
+"bool"          {return BOOLEAN;}
+["].["]         {return STRING;}
+['].[']         {return CHAR;}
 "program"       {return program;}
 [0-9]+                 {yylval.num = atoi(yytext); return IntNumber;}
 {letter}({letter}|{digit})*        {yylval.id = strdup(yytext); return ID;}
@@ -58,23 +58,23 @@ unput(c) ;
 }
 
 }
-([-|+]?{digit}+)?"."{digit}+|([-|+]?{digit}+)?"."{digit}+([e|E][-+]?{digit}+) {yylval.doub = atof(yytext); return RealNumbe_t;}
-[+]                                {return add_t;}
-[-]                                {return sub_t;}
-[*]                                {return mul_t;}
-[%]                               {return mod_t;} 
-"/"                               {return divide;} 
+([-|+]?{digit}+)?"."{digit}+|([-|+]?{digit}+)?"."{digit}+([e|E][-+]?{digit}+) {yylval.doub = atof(yytext); return REALNUM;}
+[+]                                {return ADD;}
+[-]                                {return SUB;}
+[*]                                {return MUL;}
+[%]                               {return MOD;} 
+"/"                               {return DIVIDE;} 
 [=;:{}.,()]             	   {return yytext[0];}
 "["|"]"                            {return yytext[0];}
-"=="                               {return Qequal_t;}
-".."                               {return DOnoghte;}
-"!="                               {return Nequal_t;}
-"&&"                               {return and_t;}
-"||"                               {return or_t;}
-"<"                                {return lessThan_t;}
-">"                                {return greaterThan_t;}
-"<="                               {return lessORequalThan_t;}
-">="                               {return greaterorEqualThan_t;}
+"=="                               {return EQUAL;}
+".."                               {return DOT;}
+"!="                               {return NEQUAL;}
+"&&"                               {return AND;}
+"||"                               {return OR;}
+"<"                                {return LESS;}
+">"                                {return GREATER;}
+"<="                               {return LESSOREQ;}
+">="                               {return GREATEROREQ;}
 .                      {}
 
 %%

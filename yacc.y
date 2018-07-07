@@ -42,60 +42,60 @@ int brace = 0;
 
 %start Program
 %token program
-%token integer
-%token Double
-%token character
-%token Boolean
-%token for_t
-%token then_t
-%token STRING_t
-%token to_t
-%token down_t
-%token do_t
-%token while_t
-%token if_t
-%token else_t
-%token switch_t
-%token of_t
-%token break_t
-%token repeat_t
-%token until_t
-%token continue_t
-%token return_t
-%token read_t
-%token write_t
-%token print_t
-%token case_t
-%token true_t
-%token false_t
-%token in_t
-%token end_t
-%token Qequal_t
-%token Nequal_t
-%token and_t
-%token or_t
-%token CHAR_t
-%token lessThan_t
-%token greaterThan_t
-%token lessORequalThan_t
-%token greaterorEqualThan_t
-%token divide
-%token DOnoghte
-%token add_t
-%token sub_t
-%token mul_t
-%token mod_t
-%token <doub> RealNumbe_t
+%token INTEGER
+%token DOUBLE
+%token CHARACTER
+%token BOOLEAN
+%token FOR
+%token THEN
+%token STRING
+%token TO
+%token DOWN
+%token DO
+%token WHILE
+%token IF
+%token ELSE
+%token SWITCH
+%token OF
+%token BREAK
+%token REPEAT
+%token UNTIL
+%token CONTINUE
+%token RETURN
+%token READ
+%token WRITE
+%token PRINT
+%token CASE
+%token TRUE
+%token FALSE
+%token IN
+%token END
+%token EQUAL
+%token NEQUAL
+%token AND
+%token OR
+%token CHAR
+%token LESS
+%token GREATER
+%token LESSOREQ
+%token GREATEROREQ
+%token DIVIDE
+%token DOT
+%token ADD
+%token SUB
+%token MUL
+%token MOD
+%token <doub> REALNUM
 %token <id> ID
 %token <num> IntNumber
 
 
-%left add_t sub_t
-%left mul_t devide
+%left ADD SUB
+%left MUL devide
 %%
 
 Program:
-	program ID ';' DecList '{' open_b SList  '}' close_b '.' {printf("program ID > program \n");final_end();}
+	program ID ';' DecList '{' open_b SList  '}' close_b '.' {printf("program ID > program \n");final_END();}
 	;
 
 DecList:
@@ -119,19 +119,19 @@ VarDecs:
 	;
 
 VarDec:
-	Type IDDList      {printf("reduced FROM Type IDDList TO VarDec \n");}/////////////check varible begin from here
+	Type IDDList      {printf("Type IDDList > VarDec \n");}/////////////check varible begin from here
 	;
 
 Type:
-	integer  		{ last_type = 1; }
-	| Double   		{ last_type = 2; }
-	| Boolean  		{ last_type = 3; }
-	| character  	{ last_type = 4; }
+	INTEGER  		{ last_type = 1; }
+	| DOUBLE   		{ last_type = 2; }
+	| BOOLEAN  		{ last_type = 3; }
+	| CHARACTER  	{ last_type = 4; }
 	;
 
 IDDim:
-	ID                        { declare_variable($1); printf("reduced FROM ID  TO IDDim \n");}
-	| IDDim '['IntNumber']' {printf("reduced FROM IDDim '['IntNumber']'  TO IDDim \n");}
+	ID                        { declare_variable($1); printf("ID  > IDDim \n");}
+	| IDDim '['IntNumber']' {printf("IDDim '['IntNumber']'  > IDDim \n");}
 	;
 
 IDDList:
@@ -176,28 +176,28 @@ SList:
 Stmt:
 	Exp                              {printf("Exp > Stmt  \n");}
 	| VarDecs                          {printf("VarDecs > Stmt  \n");}
-	| for_t lvalue '=' Exp '('valfor')' Exp do_t Block{printf("for_t lvalue '=' Exp '('valfor')' Exp do_t Block > Stmt  \n");}
-	| while_t Exp do_t Block           {printf("while_t Exp do_t Block > Stmt  \n");}  
-	| if_t Exp then_t Block            {printf("if_t Exp then_t Block > Stmt  \n");}
-	| if_t Exp then_t Block else_t Block {printf("if_t Exp then_t Block else_t Block > Stmt  \n");} 
-	| switch_t Exp of_t '{'open_b Cases '}'close_b  {printf("switch_t Exp of_t '{' Cases '}' > Stmt  \n");}
-	| break_t                          {printf("break_t > Stmt  \n");}
-	| repeat_t Block until_t Exp       {printf("repeat_t Block until_t Exp > Stmt  \n");}
-	| continue_t                       {printf("continue_t > Stmt  \n");}
-	| return_t Exp                     {printf("return_t Exp > Stmt  \n");} 
-	| print_t Exp                      {printf("print_t Exp > Stmt  \n");}
-	| write_t ExpPlus                  {printf("write_t ExpPlus > Stmt  \n");} 
-	| read_t '(' lvalue ')'            {printf("read_t '(' lvalue ')' > Stmt  \n");}
+	| FOR lvalue '=' Exp '('valfor')' Exp DO Block{printf("FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  \n");}
+	| WHILE Exp DO Block           {printf("WHILE Exp DO Block > Stmt  \n");}  
+	| IF Exp THEN Block            {printf("IF Exp THEN Block > Stmt  \n");}
+	| IF Exp THEN Block ELSE Block {printf("IF Exp THEN Block ELSE Block > Stmt  \n");} 
+	| SWITCH Exp OF '{'open_b Cases '}'close_b  {printf("SWITCH Exp OF '{' Cases '}' > Stmt  \n");}
+	| BREAK                          {printf("BREAK > Stmt  \n");}
+	| REPEAT Block UNTIL Exp       {printf("REPEAT Block UNTIL Exp > Stmt  \n");}
+	| CONTINUE                       {printf("CONTINUE > Stmt  \n");}
+	| RETURN Exp                     {printf("RETURN Exp > Stmt  \n");} 
+	| PRINT Exp                      {printf("PRINT Exp > Stmt  \n");}
+	| WRITE ExpPlus                  {printf("WRITE ExpPlus > Stmt  \n");} 
+	| READ '(' lvalue ')'            {printf("READ '(' lvalue ')' > Stmt  \n");}
 	|                                  {printf(" > Stmt  \n");}
 	;
 
 valfor:
-	to_t                                      {printf("to_t  > valfor  \n");}
-	|down_t to_t                               {printf("down_t to_t  > valfor  \n");}
+	TO                                      {printf("TO  > valfor  \n");}
+	|DOWN TO                               {printf("DOWN TO  > valfor  \n");}
 	;
 
 Range:
-	Exp DOnoghte Exp                               
+	Exp DOT Exp                               
 	;                           
 
 Cases:
@@ -206,29 +206,29 @@ Cases:
 	;
 
 Case:
-	case_t Exp ':' Block                      {printf("case_t Exp ':' Block > Case \n");}
-	| case_t Range ':' Block                    {printf("case_t Range ':' Block > Case \n");}
+	CASE Exp ':' Block                      {printf("CASE Exp ':' Block > Case \n");}
+	| CASE Range ':' Block                    {printf("CASE Range ':' Block > Case \n");}
 	;
   
 Logic:
-	and_t                            {printf("and_t > Logic \n");}
-	| or_t                            {printf("or_t > Logic \n");}
+	AND                            {printf("AND > Logic \n");}
+	| OR                            {printf("OR > Logic \n");}
 	| ""                              {printf("> Logic \n");}
 	| '='                             {printf("'=' > Logic \n");}
-	| Qequal_t                        {printf("Qequal_t > Logic \n");}   
-	| Nequal_t                        {printf("Nequal_t > Logic \n");}
-	|lessThan_t                       {printf("lessThan_t > Logic \n");}
-	|greaterThan_t                    {printf("greaterThan_t > Logic \n");}
-	|lessORequalThan_t                {printf("lessORequalThan_t > Logic \n");}
-	|greaterorEqualThan_t             {printf("greaterorEqualThan_t > Logic \n");}
+	| EQUAL                        {printf("EQUAL > Logic \n");}   
+	| NEQUAL                        {printf("NEQUAL > Logic \n");}
+	|LESS                       {printf("LESS > Logic \n");}
+	|GREATER                    {printf("GREATER > Logic \n");}
+	|LESSOREQ                {printf("LESSOREQ > Logic \n");}
+	|GREATEROREQ             {printf("GREATEROREQ > Logic \n");}
 	;
 
 Aop:
-	add_t                            {printf("add_t > Aop \n");}
-    | sub_t                            {printf("sub_t > Aop \n");}
-    | mul_t                            {printf("mul_t > Aop \n");}
-    | mod_t                            {printf("mod_t > Aop \n");}
-    | divide                            {printf("divide > Aop \n");}
+	ADD                            {printf("ADD > Aop \n");}
+    | SUB                            {printf("SUB > Aop \n");}
+    | MUL                            {printf("MUL > Aop \n");}
+    | MOD                            {printf("MOD > Aop \n");}
+    | DIVIDE                            {printf("DIVIDE > Aop \n");}
     ;
  
 ExpList:
@@ -253,17 +253,17 @@ lvalue:
 
 Exp:
 	IntNumber                    {printf("IntNumber > Exp \n");}
-    |RealNumbe_t
+    |REALNUM
     | lvalue                          {printf("lvalue > Exp \n");}
-    | CHAR_t                          {printf("CHAR_t > Exp \n");}
-    | true_t                          {printf("true_t > Exp \n");}
-    | false_t                         {printf("false_t > Exp \n");}
+    | CHAR                          {printf("CHAR > Exp \n");}
+    | TRUE                          {printf("TRUE > Exp \n");}
+    | FALSE                         {printf("FALSE > Exp \n");}
     | Exp Aop Exp                     {printf("Exp Aop Exp > Exp \n");}
     | Exp Logic Exp                   {printf("Exp Logic Exp > Exp \n");}
     | '-' Exp                         {printf("'-' Exp  > Exp \n");}
-    | STRING_t                        {printf("STRING_t > Exp \n");}
+    | STRING                        {printf("STRING > Exp \n");}
     | '('Exp')'                       {printf("'('Exp')' > Exp \n");}
-    | Exp in_t Range                  {printf("Exp in_t Range > Exp \n");}
+    | Exp IN Range                  {printf("Exp IN Range > Exp \n");}
     | lvalue '=' Exp                  {printf("lvalue '=' Exp > Exp \n");}
     | ID'('ExpList')'                 {printf("ID'('ExpList')'  > Exp \n");}
     ; 
@@ -307,7 +307,7 @@ void open_brace(){
 void close_brace(){
         brace--;
 }
-void final_end(){
+void final_END(){
         if(brace!=0){
                 printf("Error:Wrong braces");
         }
