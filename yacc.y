@@ -253,13 +253,7 @@ void yyerror (char *s)
 	fprintf (stderr, "%s\n", s);
 }
 
-<<<<<<< HEAD
-void declare_variable(char *id)
-{	
-=======
 void declare_variable(char *id) {	
-	printf("Debugging:declare_variable called");
->>>>>>> check-var-defined
 	char find = 0;
 	char i=0;
 	for( i = 0; i < var_count; i++){
@@ -283,20 +277,13 @@ void declare_variable(char *id) {
 	
 }
 
-<<<<<<< HEAD
-
-void open_brace()
-{
-=======
 void constant_check(){
-	printf("--Debugging:constant_check called\n");
 	for(char i = 0; i < var_count; i++)
 		if(strcmp(lastID, variables[i].name) == 0 && variables[i].type==5 )
 			printf("-- Syntax Error : #%s# is constant varible.can't change it\n", lastID);
 		
 }
 void open_brace(){
->>>>>>> check-var-defined
         brace++;
 }
 

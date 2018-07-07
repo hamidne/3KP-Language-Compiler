@@ -1,9 +1,21 @@
-<<<<<<< HEAD
--- Syntax Error: is not define
-=======
 Debugging:declare_variable called -- create new var #a# with type 5
 ID  > IDDim 
+Debugging:declare_variable called -- Syntax Error : #b# is constant varible.can't change it
+ -- create new var #b# with type 5
+ID  > IDDim 
+Debugging:declare_variable called -- Syntax Error : #c# is constant varible.can't change it
+ -- Syntax Error : #c# is constant varible.can't change it
+ -- create new var #c# with type 5
+ID  > IDDim 
+Debugging:declare_variable called -- Syntax Error : #i# is constant varible.can't change it
+ -- Syntax Error : #i# is constant varible.can't change it
+ -- Syntax Error : #i# is constant varible.can't change it
+ -- create new var #i# with type 5
+ID  > IDDim 
 IDDim  > IDDList 
+IDDim  IDDList   > IDDList 
+IDDim  IDDList   > IDDList 
+IDDim  IDDList   > IDDList 
 Type IDDList > VarDec 
 VarDec > VarDecs 
 VarDecs > Dec 
@@ -14,21 +26,21 @@ Exp > IDD
 IDD > lvalue 
 IntNumber > Exp 
 --Debugging:constant_check called
--- Syntax Error : #a# is constant varible.can't change it
+-- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
 IDD > lvalue 
 IntNumber > Exp 
 --Debugging:constant_check called
--- Syntax Error : #a# is constant varible.can't change it
+-- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
 IDD > lvalue 
 IntNumber > Exp 
 --Debugging:constant_check called
--- Syntax Error : #a# is constant varible.can't change it
+-- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
@@ -49,7 +61,7 @@ IDD > lvalue
 lvalue > Exp 
 Exp Aop Exp > Exp 
 --Debugging:constant_check called
--- Syntax Error : #a# is constant varible.can't change it
+-- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
@@ -58,7 +70,7 @@ Exp > IDD
 IDD > lvalue 
 lvalue > Exp 
 --Debugging:constant_check called
--- Syntax Error : #a# is constant varible.can't change it
+-- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
@@ -67,7 +79,7 @@ Exp > IDD
 IDD > lvalue 
 lvalue > Exp 
 --Debugging:constant_check called
--- Syntax Error : #a# is constant varible.can't change it
+-- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
@@ -79,7 +91,7 @@ ADD > Aop
 IntNumber > Exp 
 Exp Aop Exp > Exp 
 --Debugging:constant_check called
--- Syntax Error : #a# is constant varible.can't change it
+-- Syntax Error : #i# is constant varible.can't change it
 lvalue '=' Exp > Exp 
 Exp > Stmt  
  > SList  
@@ -97,4 +109,3 @@ Stmt ';' SList > SList
 Stmt ';' SList > SList  
 -- close brace
 program ID > program 
->>>>>>> check-var-defined
