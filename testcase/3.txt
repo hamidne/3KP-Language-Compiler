@@ -1,0 +1,13 @@
+program fibfo;
+int a , b , c , i ;
+{
+
+a = 1;
+	b = 1;
+	for i = 1 to 7 do 
+		{
+		c = a + b;
+		a = b;
+		b = c;
+	};
+}.

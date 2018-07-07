@@ -1,4 +1,12 @@
+--||-- lineNumber : 2
  -- create new var #a# with type 1
+ID  > IDDim 
+IDDim  > IDDList 
+Type IDDList > VarDec 
+VarDec > VarDecs 
+VarDecs > Dec 
+--||-- lineNumber : 3
+ -- Syntax Error : #a# is an already declared variable
 ID  > IDDim 
  -- create new var #b# with type 1
 ID  > IDDim 
@@ -13,34 +21,46 @@ IDDim  IDDList   > IDDList
 Type IDDList > VarDec 
 VarDec > VarDecs 
 VarDecs > Dec 
+--||-- lineNumber : 4
 No > DecList 
 Dec And DecList > DecList 
+Dec And DecList > DecList 
 -- open brace
+--||-- lineNumber : 5
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 lvalue '=' Exp > Exp 
---//  CheckVariables 
 Exp > Stmt  
+--||-- lineNumber : 6
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 lvalue '=' Exp > Exp 
---//  CheckVariables 
 Exp > Stmt  
+--||-- lineNumber : 7
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 lvalue '=' Exp > Exp 
---//  CheckVariables 
 Exp > Stmt  
+--||-- lineNumber : 8
+ -- create new var #erfan# with type 1
+ID  > IDDim 
+IDDim  > IDDList 
+Type IDDList > VarDec 
+VarDec > VarDecs 
+VarDecs > Stmt  
+--||-- lineNumber : 9
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 LESSOREQ > Logic 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 Exp Logic Exp > Exp 
+--||-- lineNumber : 10
 -- open brace
+--||-- lineNumber : 11
 Exp > IDD 
 IDD > lvalue 
 Exp > IDD 
@@ -52,35 +72,35 @@ IDD > lvalue
 lvalue > Exp 
 Exp Aop Exp > Exp 
 lvalue '=' Exp > Exp 
---//  CheckVariables 
 Exp > Stmt  
+--||-- lineNumber : 12
 Exp > IDD 
 IDD > lvalue 
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 lvalue '=' Exp > Exp 
---//  CheckVariables 
 Exp > Stmt  
+--||-- lineNumber : 13
 Exp > IDD 
 IDD > lvalue 
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 lvalue '=' Exp > Exp 
---//  CheckVariables 
 Exp > Stmt  
+--||-- lineNumber : 14
 Exp > IDD 
 IDD > lvalue 
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 ADD > Aop 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 Exp Aop Exp > Exp 
 lvalue '=' Exp > Exp 
---//  CheckVariables 
 Exp > Stmt  
+--||-- lineNumber : 15
  > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
@@ -89,7 +109,10 @@ Stmt ';' SList > SList
 -- close brace
 '{' SList '} > Block 
 WHILE Exp DO Block > Stmt  
+--||-- lineNumber : 16
+--||-- lineNumber : 17
  > SList  
+Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  

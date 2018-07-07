@@ -1,0 +1,76 @@
+program Dfs;
+..
+.
+temp1
+1temp
+tem1p
+;
+1.1
+.0
+0.
+1.
+1.2.3
+1*2
+1 * 2.4 + b.4
+0.1E-3
++E--4
+--E.-4
+0.1.E.+3
+/*
+/*
+
+//one line comment
+/*? one line comment*/
+
+/*
+* multi line comment /
+*/
+
+
+
+
+/ * test on incorrect comment * /
+
+/*
+* multi line comment //
+*/
+
+
+
+/*
+
+
+* multi line comment /
+*
+*
+ksfhsdiu 12319.
+*/
+int n,m,mat[100][100],mark[100];
+int dfs(int a)
+{
+int i,j;
+mark[a]=1;
+for i=0 to n do
+if (mark[i]==0 && mat[a][i]) then
+dfs(i);
+return mark[a];
+};
+{
+int n,m,i,j,c;
+float a = .13, b = 50E-4;
+char str="nasrin", s='R';
+c=0;
+read(n);
+for i=0 to n do
+for j=0 to i-1 do
+read(mat[i][j]);
+for i=0 to n do
+mark[i]=0;
+for i=0 to n do
+if (mark[i]==0) then
+{
+dfs(i);
+c=c + 1;
+}
+print(c);
+}.

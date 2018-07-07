@@ -37,8 +37,8 @@ int brace = 0;
 %union {
 	int num;
 	char *id;
-	double doub;
 	char *str;
+	double doub;
 }
 
 %start Program
@@ -87,8 +87,8 @@ int brace = 0;
 %token SUB
 %token MUL
 %token MOD
-%token <doub> REALNUM
 %token <id> ID
+%token <doub> REALNUM
 %token <num> IntNumber
 
 
@@ -257,9 +257,9 @@ lvalue:
 	;
 
 Exp:
-	  IntNumber						{printf("IntNumber > Exp \n");}
-    | REALNUM
+	  IntNumber						{printf("&&& 		IntNumber > Exp \n");}
     | lvalue         				{printf("lvalue > Exp \n");}
+    | REALNUM
     | CHAR           				{printf("CHAR > Exp \n");}
     | TRUE           				{printf("TRUE > Exp \n");}
     | FALSE          				{printf("FALSE > Exp \n");}
@@ -283,7 +283,7 @@ Block:
 
 int main (void)
 {
-	return yyparse ( );
+	return yyparse();
 }
 
 void yyerror (char *s)
@@ -294,7 +294,7 @@ void yyerror (char *s)
 void declare_variable(char *id)
 {	
 	char find = 0;
-
+	// printf("line number : %d", lineNumber);
 	for(char i = 0; i < var_count; i++)
 		if (strcmp(id, variables[i].name) == 0)
 			find = 1;
