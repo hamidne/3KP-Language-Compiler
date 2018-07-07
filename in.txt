@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+program dfs;
+
+int n,m,mat[100][100],mark[100];
+int dfs(){
+
+};
+int dfs(int a){
+
+int i,j;
+mark[a]=1;
+
+for i=0 (to) n do {
+ 
+         if(mark[i] == 0 && mat[a][i] == 0) then {
+ 
+                 dfs(i);
+
+};
+=======
 program fibw;
 int a;
 int a , b , c,i;
@@ -13,5 +33,50 @@ int a , b , c,i;
 		b = c;
 		i = i + 1;
 	};
+>>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
+
+};
+
+return mark[a];
+
+};
+
+{
+int n,m,i,j,c;
+
+c = 0;
+
+read(n);
+
+for i=0 (to) n do {
+    for j=0 (to) i-1 do {
+
+          read(mat[i][j]);
+
+       };
+
+   };
+
+  for i=0 (to) n do {
+
+        mark[i]=0;
+
+ };
+
+  for i=0 (to) n do {
+
+       if(mark[i] == 0) then {
+
+        dfs(i);
+ 
+       c = c + 1;
+
+        };
+
+       print(c);
+ 
+      };
 
 }.
+
+
