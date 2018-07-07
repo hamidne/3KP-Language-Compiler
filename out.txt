@@ -1,1 +1,100 @@
+<<<<<<< HEAD
 -- Syntax Error: is not define
+=======
+Debugging:declare_variable called -- create new var #a# with type 5
+ID  > IDDim 
+IDDim  > IDDList 
+Type IDDList > VarDec 
+VarDec > VarDecs 
+VarDecs > Dec 
+No > DecList 
+Dec And DecList > DecList 
+-- open brace
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+IntNumber > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+LESSOREQ > Logic 
+IntNumber > Exp 
+Exp Logic Exp > Exp 
+-- open brace
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+ADD > Aop 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+Exp Aop Exp > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+ADD > Aop 
+IntNumber > Exp 
+Exp Aop Exp > Exp 
+--Debugging:constant_check called
+-- Syntax Error : #a# is constant varible.can't change it
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+-- close brace
+'{' SList '} > Block 
+WHILE Exp DO Block > Stmt  
+ > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+Stmt ';' SList > SList  
+-- close brace
+program ID > program 
+>>>>>>> check-var-defined
