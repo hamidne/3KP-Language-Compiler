@@ -52,7 +52,6 @@ int functionCounter =0;
 %token IN END
 %token EQUAL NEQUAL AND OR CHAR LESS GREATER LESSOREQ GREATEROREQ DIVIDE SUB ADD MOD MUL DOT
 
-%token <doub> REALNUM
 %token <id> ID
 %token <doub> REALNUM
 %token <num> IntNumber
@@ -145,7 +144,7 @@ SList:
 Stmt:
 	Exp                              						{printf("Exp > Stmt  \n");}
 	| VarDecs                          						{printf("VarDecs > Stmt  \n");}
-	| FOR lvalue '=' Exp '('valfor')' Exp DO Block			{printf("FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  \n");}
+	| FOR lvalue '=' Exp valfor Exp DO Block				{printf("FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  \n");}
 	| WHILE Exp DO Block           							{printf("WHILE Exp DO Block > Stmt  \n");}  
 	| IF Exp THEN Block            							{printf("IF Exp THEN Block > Stmt  \n");}
 	| IF Exp THEN Block ELSE Block 							{printf("IF Exp THEN Block ELSE Block > Stmt  \n");} 
@@ -221,25 +220,26 @@ lvalue:
 	;
 
 Exp:
-	  IntNumber						{printf("&&& 		IntNumber > Exp \n");}
-    | lvalue         				{printf("lvalue > Exp \n");}
+	ID								{ printf("/*/-*//-*/*"); }
+    | lvalue         				{ printf("lvalue > Exp \n");}
     | REALNUM
-    | CHAR           				{printf("CHAR > Exp \n");}
-    | TRUE           				{printf("TRUE > Exp \n");}
-    | FALSE          				{printf("FALSE > Exp \n");}
-    | Exp Aop Exp    				{printf("Exp Aop Exp > Exp \n");}
-    | Exp Logic Exp  				{printf("Exp Logic Exp > Exp \n");}
-    | '-' Exp        				{printf("'-' Exp  > Exp \n");}
-    | STRING         				{printf("STRING > Exp \n");}
-    | '('Exp')'      				{printf("'('Exp')' > Exp \n");}
-    | Exp IN Range   				{printf("Exp IN Range > Exp \n");}
-    | lvalue '=' Exp 				{printf("lvalue '=' Exp > Exp \n"); }//check_value_defined($1);
-    | ID'('ExpList')'				{printf("ID'('ExpList')'  > Exp \n");}
+    | CHAR           				{ printf("CHAR > Exp \n");}
+    | TRUE           				{ printf("TRUE > Exp \n");}
+    | FALSE          				{ printf("FALSE > Exp \n");}
+    | Exp Aop Exp    				{ printf("Exp Aop Exp > Exp \n");}
+    | Exp Logic Exp  				{ printf("Exp Logic Exp > Exp \n");}
+    | '-' Exp        				{ printf("'-' Exp  > Exp \n");}
+    | STRING         				{ printf("STRING > Exp \n");}
+    | '('Exp')'      				{ printf("'('Exp')' > Exp \n");}
+    | Exp IN Range   				{ printf("Exp IN Range > Exp \n");}
+    | lvalue '=' Exp 				{ printf("lvalue '=' Exp > Exp \n"); /*check_value_defined($1);*/ }
+    | ID'('ExpList')'				{ printf("ID'('ExpList')'  > Exp \n");}
+	| IntNumber						{ printf("IntNumber > Exp \n");}
     ; 
 
 Block:
-	'{' open_b SList '}' close_b	{printf("'{' SList '} > Block \n");}
-	| Stmt                      	{printf("Stmt > Block \n");}
+	'{' open_b SList '}' close_b	{ printf("'{' SList '} > Block \n");}
+	| Stmt                      	{ printf("Stmt > Block \n");}
 	; 
 
 %%
@@ -258,16 +258,16 @@ void yyerror (char *s)
 void declare_variable(char *id) {	
 	char find = 0;
 	// printf("line number : %d", lineNumber);
-	for(char i = 0; i < var_count; i++)
+	char i;
+	for(i = 0; i < var_count; i++) {
 		if (strcmp(id, variables[i].name) == 0)
 			find = 1;
-		if(variables[i].type==5){
+		if(variables[i].type==5)
 			printf(" -- Syntax Error : #%s# is constant varible.can't change it\n", id);
-		}
 	}
 
 	
-	if (find == 0) {
+	if(find == 0) {
 		variables[var_count].type = last_type;
 		strcpy(variables[var_count++].name, id);
 		printf(" -- create new var #%s# with type %c\n", id, last_type + 48);

@@ -8,7 +8,7 @@ int lineNumber = 2;
 digit [0-9]
 lower [a-z]
 upper [A-Z]
-letter {lower}|{upper}|[_]
+letter [a-zA-Z]
 onlineComment "//".*
 moreLineComment "/*"
 %%
