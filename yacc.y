@@ -257,12 +257,8 @@ void yyerror (char *s)
 void declare_variable(char *id) {	
 	char find = 0;
 	// printf("line number : %d", lineNumber);
-<<<<<<< HEAD
-	for(char i = 0; i < var_count; i++){
-=======
 	char i;
 	for(i = 0; i < var_count; i++) {
->>>>>>> ec4073cff5a5d8b388fd0caa5b7b6a9fe93b1bb1
 		if (strcmp(id, variables[i].name) == 0)
 			find = 1;
 		if(variables[i].type==5)
