@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 program dfs;
 
 int n,m,mat[100][100],mark[100];
-int dfs(){
 
-};
 int dfs(int a){
 
 int i,j;
@@ -17,23 +14,6 @@ for i=0 (to) n do {
                  dfs(i);
 
 };
-=======
-program fibw;
-int a;
-int a , b , c,i;
-{
-	i = 1;
-	a = 1;
-	b = 1;
-	int erfan;
-	while i <= 10 do
-	{
-		c = a + b;
-		a = b;
-		b = c;
-		i = i + 1;
-	};
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
 
 };
 

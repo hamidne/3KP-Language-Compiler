@@ -1,9 +1,6 @@
-<<<<<<< HEAD
- -- create new var #n# with type 1
-=======
 --||-- lineNumber : 2
- -- create new var #a# with type 1
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
+--||-- lineNumber : 3
+ -- create new var #n# with type 1
 ID  > IDDim 
  -- create new var #m# with type 1
 ID  > IDDim 
@@ -21,20 +18,16 @@ IDDim  IDDList   > IDDList
 Type IDDList > VarDec 
 VarDec > VarDecs 
 VarDecs > Dec 
-<<<<<<< HEAD
- > ArgsList 
---Debugging:add_function called 
--- open brace
- > SList  
--- close brace
-Type ID '(' ArgsList ')' '{' SList '}' ';' > FuncDec 
+--||-- lineNumber : 4
+--||-- lineNumber : 5
 ID  > IDList 
 Arg > Type IDList  
 ArgList > Arg 
 ArgList > ArgsList 
 --Debugging:add_function called 
- -- Syntax Error : #dfs# is an already declared function
 -- open brace
+--||-- lineNumber : 6
+--||-- lineNumber : 7
  -- create new var #i# with type 1
 ID  > IDDim 
  -- create new var #j# with type 1
@@ -44,52 +37,28 @@ IDDim  IDDList   > IDDList
 Type IDDList > VarDec 
 VarDec > VarDecs 
 VarDecs > Stmt  
+--||-- lineNumber : 8
 Exp > IDD 
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 IDD '[' Exp ']' > IDD 
 IDD > lvalue 
-IntNumber > Exp 
-=======
---||-- lineNumber : 3
- -- Syntax Error : #a# is an already declared variable
-ID  > IDDim 
- -- create new var #b# with type 1
-ID  > IDDim 
- -- create new var #c# with type 1
-ID  > IDDim 
- -- create new var #i# with type 1
-ID  > IDDim 
-IDDim  > IDDList 
-IDDim  IDDList   > IDDList 
-IDDim  IDDList   > IDDList 
-IDDim  IDDList   > IDDList 
-Type IDDList > VarDec 
-VarDec > VarDecs 
-VarDecs > Dec 
---||-- lineNumber : 4
-No > DecList 
-Dec And DecList > DecList 
-Dec And DecList > DecList 
--- open brace
---||-- lineNumber : 5
+&&& 		IntNumber > Exp 
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+--||-- lineNumber : 9
+--||-- lineNumber : 10
 Exp > IDD 
 IDD > lvalue 
 &&& 		IntNumber > Exp 
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
-lvalue '=' Exp > Exp 
-Exp > Stmt  
---||-- lineNumber : 6
-Exp > IDD 
-IDD > lvalue 
-<<<<<<< HEAD
-IntNumber > Exp 
 TO  > valfor  
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 -- open brace
+--||-- lineNumber : 11
+--||-- lineNumber : 12
 Exp > IDD 
 Exp > IDD 
 IDD > lvalue 
@@ -98,7 +67,7 @@ IDD '[' Exp ']' > IDD
 IDD > lvalue 
 lvalue > Exp 
 EQUAL > Logic 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 AND > Logic 
 Exp > IDD 
 Exp > IDD 
@@ -112,12 +81,14 @@ IDD '[' Exp ']' > IDD
 IDD > lvalue 
 lvalue > Exp 
 EQUAL > Logic 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 Exp Logic Exp > Exp 
 Exp Logic Exp > Exp 
 Exp Logic Exp > Exp 
 '('Exp')' > Exp 
 -- open brace
+--||-- lineNumber : 13
+--||-- lineNumber : 14
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
@@ -125,16 +96,22 @@ Exp > ExpPlus
 ExpPlus > ExpList 
 ID'('ExpList')'  > Exp 
 Exp > Stmt  
+--||-- lineNumber : 15
+--||-- lineNumber : 16
  > SList  
 Stmt ';' SList > SList  
 -- close brace
 '{' SList '} > Block 
 IF Exp THEN Block > Stmt  
+--||-- lineNumber : 17
+--||-- lineNumber : 18
  > SList  
 Stmt ';' SList > SList  
 -- close brace
 '{' SList '} > Block 
 FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
+--||-- lineNumber : 19
+--||-- lineNumber : 20
 Exp > IDD 
 Exp > IDD 
 IDD > lvalue 
@@ -143,6 +120,8 @@ IDD '[' Exp ']' > IDD
 IDD > lvalue 
 lvalue > Exp 
 RETURN Exp > Stmt  
+--||-- lineNumber : 21
+--||-- lineNumber : 22
  > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
@@ -150,14 +129,16 @@ Stmt ';' SList > SList
 Stmt ';' SList > SList  
 -- close brace
 Type ID '(' ArgsList ')' '{' SList '}' ';' > FuncDec 
+--||-- lineNumber : 23
+--||-- lineNumber : 24
 No > FuncDecs 
-FuncDec And FuncDecs > FuncDecs 
 FuncDec And FuncDecs > FuncDecs 
 FuncDecs > Dec 
 No > DecList 
 Dec And DecList > DecList 
 Dec And DecList > DecList 
 -- open brace
+--||-- lineNumber : 25
  -- Syntax Error : #n# is an already declared variable
 ID  > IDDim 
  -- Syntax Error : #m# is an already declared variable
@@ -176,58 +157,42 @@ IDDim  IDDList   > IDDList
 Type IDDList > VarDec 
 VarDec > VarDecs 
 VarDecs > Stmt  
-Exp > IDD 
-IDD > lvalue 
-IntNumber > Exp 
-=======
-&&& 		IntNumber > Exp 
-lvalue '=' Exp > Exp 
-Exp > Stmt  
---||-- lineNumber : 7
+--||-- lineNumber : 26
+--||-- lineNumber : 27
 Exp > IDD 
 IDD > lvalue 
 &&& 		IntNumber > Exp 
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
 lvalue '=' Exp > Exp 
 Exp > Stmt  
---||-- lineNumber : 8
- -- create new var #erfan# with type 1
-ID  > IDDim 
-IDDim  > IDDList 
-Type IDDList > VarDec 
-VarDec > VarDecs 
-VarDecs > Stmt  
---||-- lineNumber : 9
+--||-- lineNumber : 28
+--||-- lineNumber : 29
 Exp > IDD 
 IDD > lvalue 
 READ '(' lvalue ')' > Stmt  
+--||-- lineNumber : 30
+--||-- lineNumber : 31
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 TO  > valfor  
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
-<<<<<<< HEAD
 -- open brace
+--||-- lineNumber : 32
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 TO  > valfor  
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 SUB > Aop 
-IntNumber > Exp 
-Exp Aop Exp > Exp 
-=======
-LESSOREQ > Logic 
 &&& 		IntNumber > Exp 
-Exp Logic Exp > Exp 
---||-- lineNumber : 10
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
+Exp Aop Exp > Exp 
 -- open brace
---||-- lineNumber : 11
+--||-- lineNumber : 33
+--||-- lineNumber : 34
 Exp > IDD 
 Exp > IDD 
 IDD > lvalue 
@@ -239,60 +204,61 @@ lvalue > Exp
 IDD '[' Exp ']' > IDD 
 IDD > lvalue 
 READ '(' lvalue ')' > Stmt  
+--||-- lineNumber : 35
+--||-- lineNumber : 36
  > SList  
 Stmt ';' SList > SList  
 -- close brace
 '{' SList '} > Block 
 FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
+--||-- lineNumber : 37
+--||-- lineNumber : 38
  > SList  
 Stmt ';' SList > SList  
 -- close brace
 '{' SList '} > Block 
 FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
+--||-- lineNumber : 39
+--||-- lineNumber : 40
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 TO  > valfor  
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
-<<<<<<< HEAD
 -- open brace
+--||-- lineNumber : 41
+--||-- lineNumber : 42
 Exp > IDD 
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 IDD '[' Exp ']' > IDD 
 IDD > lvalue 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 lvalue '=' Exp > Exp 
 Exp > Stmt  
+--||-- lineNumber : 43
+--||-- lineNumber : 44
  > SList  
 Stmt ';' SList > SList  
 -- close brace
 '{' SList '} > Block 
 FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
-=======
-Exp Aop Exp > Exp 
-lvalue '=' Exp > Exp 
-Exp > Stmt  
---||-- lineNumber : 12
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
+--||-- lineNumber : 45
+--||-- lineNumber : 46
 Exp > IDD 
 IDD > lvalue 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 TO  > valfor  
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
-<<<<<<< HEAD
 -- open brace
+--||-- lineNumber : 47
+--||-- lineNumber : 48
 Exp > IDD 
-=======
-lvalue '=' Exp > Exp 
-Exp > Stmt  
---||-- lineNumber : 13
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
@@ -300,22 +266,21 @@ IDD '[' Exp ']' > IDD
 IDD > lvalue 
 lvalue > Exp 
 EQUAL > Logic 
-IntNumber > Exp 
+&&& 		IntNumber > Exp 
 Exp Logic Exp > Exp 
 '('Exp')' > Exp 
 -- open brace
+--||-- lineNumber : 49
+--||-- lineNumber : 50
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
-<<<<<<< HEAD
 Exp > ExpPlus 
 ExpPlus > ExpList 
 ID'('ExpList')'  > Exp 
-=======
-lvalue '=' Exp > Exp 
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
 Exp > Stmt  
---||-- lineNumber : 14
+--||-- lineNumber : 51
+--||-- lineNumber : 52
 Exp > IDD 
 IDD > lvalue 
 Exp > IDD 
@@ -326,39 +291,40 @@ ADD > Aop
 Exp Aop Exp > Exp 
 lvalue '=' Exp > Exp 
 Exp > Stmt  
---||-- lineNumber : 15
+--||-- lineNumber : 53
+--||-- lineNumber : 54
  > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 -- close brace
 '{' SList '} > Block 
 IF Exp THEN Block > Stmt  
+--||-- lineNumber : 55
+--||-- lineNumber : 56
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
 '('Exp')' > Exp 
 PRINT Exp > Stmt  
+--||-- lineNumber : 57
+--||-- lineNumber : 58
  > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 -- close brace
 '{' SList '} > Block 
-<<<<<<< HEAD
 FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
-=======
-WHILE Exp DO Block > Stmt  
---||-- lineNumber : 16
---||-- lineNumber : 17
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
+--||-- lineNumber : 59
+--||-- lineNumber : 60
  > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
-<<<<<<< HEAD
 Stmt ';' SList > SList  
-=======
->>>>>>> 1322183acc842d8d16baf8922a9035bf869f9e85
 -- close brace
 program ID > program 
+--||-- lineNumber : 61
+--||-- lineNumber : 62
+--||-- lineNumber : 63

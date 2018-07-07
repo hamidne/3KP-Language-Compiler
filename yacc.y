@@ -54,7 +54,6 @@ int functionCounter =0;
 
 %token <doub> REALNUM
 %token <id> ID
-%token <doub> REALNUM
 %token <num> IntNumber
 %left ADD SUB
 %left MUL devide
@@ -258,7 +257,7 @@ void yyerror (char *s)
 void declare_variable(char *id) {	
 	char find = 0;
 	// printf("line number : %d", lineNumber);
-	for(char i = 0; i < var_count; i++)
+	for(char i = 0; i < var_count; i++){
 		if (strcmp(id, variables[i].name) == 0)
 			find = 1;
 		if(variables[i].type==5){
