@@ -181,7 +181,7 @@ SList:
 Stmt:
 	Exp                              						{printf("Exp > Stmt  \n");}
 	| VarDecs                          						{printf("VarDecs > Stmt  \n");}
-	| FOR lvalue '=' Exp valfor Exp DO Block			{printf("FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  \n");}
+	| FOR lvalue '=' Exp valfor Exp DO Block				{printf("FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  \n");}
 	| WHILE Exp DO Block           							{printf("WHILE Exp DO Block > Stmt  \n");}  
 	| IF Exp THEN Block            							{printf("IF Exp THEN Block > Stmt  \n");}
 	| IF Exp THEN Block ELSE Block 							{printf("IF Exp THEN Block ELSE Block > Stmt  \n");} 
