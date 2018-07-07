@@ -1,4 +1,4 @@
-prograsm fibw;
+program fibw;
 int a , b , c,i;
 {
 	i = 1;
