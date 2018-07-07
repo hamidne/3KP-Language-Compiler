@@ -1,151 +1,21 @@
- -- create new var #rrrrr# with type 4
+ -- create new var #a# with type 1
 ID  > IDDim 
-IDDim  > IDDList 
-Type IDDList > VarDec 
-VarDec > VarDecs 
-VarDecs > Dec 
- -- create new var #n# with type 2
-ID  > IDDim 
-IDDim  > IDDList 
-Type IDDList > VarDec 
-VarDec > VarDecs 
-VarDecs > Dec 
- -- Syntax Error : #n# is an already declared variable
-ID  > IDDim 
- -- create new var #m# with type 1
-ID  > IDDim 
- -- create new var #mat# with type 1
-ID  > IDDim 
-IDDim '['IntNumber']'  > IDDim 
-IDDim '['IntNumber']'  > IDDim 
- -- create new var #mark# with type 1
-ID  > IDDim 
-IDDim '['IntNumber']'  > IDDim 
-IDDim  > IDDList 
-IDDim  IDDList   > IDDList 
-IDDim  IDDList   > IDDList 
-IDDim  IDDList   > IDDList 
-Type IDDList > VarDec 
-VarDec > VarDecs 
-VarDecs > Dec 
-ID  > IDList 
-Arg > Type IDList  
-ArgList > Arg 
-ArgList > ArgsList 
-open brace
- -- create new var #i# with type 1
-ID  > IDDim 
- -- create new var #j# with type 1
-ID  > IDDim 
-IDDim  > IDDList 
-IDDim  IDDList   > IDDList 
-Type IDDList > VarDec 
-VarDec > VarDecs 
-VarDecs > Stmt  
-Exp > IDD 
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-IDD '[' Exp ']' > IDD 
-IDD > lvalue 
-IntNumber > Exp 
-lvalue '=' Exp > Exp 
-Exp > Stmt  
-Exp > IDD 
-IDD > lvalue 
-IntNumber > Exp 
-TO  > valfor  
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-open brace
-Exp > IDD 
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-IDD '[' Exp ']' > IDD 
-IDD > lvalue 
-lvalue > Exp 
-EQUAL > Logic 
-IntNumber > Exp 
-AND > Logic 
-Exp > IDD 
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-IDD '[' Exp ']' > IDD 
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-IDD '[' Exp ']' > IDD 
-IDD > lvalue 
-lvalue > Exp 
-EQUAL > Logic 
-IntNumber > Exp 
-Exp Logic Exp > Exp 
-Exp Logic Exp > Exp 
-Exp Logic Exp > Exp 
-'('Exp')' > Exp 
-open brace
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-Exp > ExpPlus 
-ExpPlus > ExpList 
-ID'('ExpList')'  > Exp 
-Exp > Stmt  
- > SList  
-Stmt ';' SList > SList  
-close brace
-'{' SList '} > Block 
-IF Exp THEN Block > Stmt  
- > SList  
-Stmt ';' SList > SList  
-close brace
-'{' SList '} > Block 
-FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
-Exp > IDD 
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-IDD '[' Exp ']' > IDD 
-IDD > lvalue 
-lvalue > Exp 
-RETURN Exp > Stmt  
- > SList  
-Stmt ';' SList > SList  
-Stmt ';' SList > SList  
-Stmt ';' SList > SList  
-Stmt ';' SList > SList  
-close brace
-Type ID '(' ArgsList ')' '{' SList '}' ';' > FuncDec 
-No > FuncDecs 
-FuncDec And FuncDecs > FuncDecs 
-FuncDecs > Dec 
-No > DecList 
-Dec And DecList > DecList 
-Dec And DecList > DecList 
-Dec And DecList > DecList 
-Dec And DecList > DecList 
-open brace
- -- Syntax Error : #n# is an already declared variable
-ID  > IDDim 
- -- Syntax Error : #m# is an already declared variable
-ID  > IDDim 
- -- Syntax Error : #i# is an already declared variable
-ID  > IDDim 
- -- Syntax Error : #j# is an already declared variable
+ -- create new var #b# with type 1
 ID  > IDDim 
  -- create new var #c# with type 1
 ID  > IDDim 
+ -- create new var #i# with type 1
+ID  > IDDim 
 IDDim  > IDDList 
-IDDim  IDDList   > IDDList 
 IDDim  IDDList   > IDDList 
 IDDim  IDDList   > IDDList 
 IDDim  IDDList   > IDDList 
 Type IDDList > VarDec 
 VarDec > VarDecs 
-VarDecs > Stmt  
+VarDecs > Dec 
+No > DecList 
+Dec And DecList > DecList 
+-- open brace
 Exp > IDD 
 IDD > lvalue 
 IntNumber > Exp 
@@ -153,95 +23,46 @@ lvalue '=' Exp > Exp
 Exp > Stmt  
 Exp > IDD 
 IDD > lvalue 
-READ '(' lvalue ')' > Stmt  
-Exp > IDD 
-IDD > lvalue 
 IntNumber > Exp 
-TO  > valfor  
+lvalue '=' Exp > Exp 
+Exp > Stmt  
 Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-open brace
-Exp > IDD 
-IDD > lvalue 
-IntNumber > Exp 
-TO  > valfor  
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-SUB > Aop 
-IntNumber > Exp 
-Exp Aop Exp > Exp 
-open brace
-Exp > IDD 
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-IDD '[' Exp ']' > IDD 
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-IDD '[' Exp ']' > IDD 
-IDD > lvalue 
-READ '(' lvalue ')' > Stmt  
- > SList  
-Stmt ';' SList > SList  
-close brace
-'{' SList '} > Block 
-FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
- > SList  
-Stmt ';' SList > SList  
-close brace
-'{' SList '} > Block 
-FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
-Exp > IDD 
-IDD > lvalue 
-IntNumber > Exp 
-TO  > valfor  
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-open brace
-Exp > IDD 
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-IDD '[' Exp ']' > IDD 
 IDD > lvalue 
 IntNumber > Exp 
 lvalue '=' Exp > Exp 
 Exp > Stmt  
- > SList  
-Stmt ';' SList > SList  
-close brace
-'{' SList '} > Block 
-FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
-Exp > IDD 
-IDD > lvalue 
-IntNumber > Exp 
-TO  > valfor  
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
-open brace
-Exp > IDD 
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-IDD '[' Exp ']' > IDD 
-IDD > lvalue 
-lvalue > Exp 
-EQUAL > Logic 
+LESSOREQ > Logic 
 IntNumber > Exp 
 Exp Logic Exp > Exp 
-'('Exp')' > Exp 
-open brace
+-- open brace
+Exp > IDD 
+IDD > lvalue 
 Exp > IDD 
 IDD > lvalue 
 lvalue > Exp 
-Exp > ExpPlus 
-ExpPlus > ExpList 
-ID'('ExpList')'  > Exp 
+ADD > Aop 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+Exp Aop Exp > Exp 
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+lvalue '=' Exp > Exp 
+Exp > Stmt  
+Exp > IDD 
+IDD > lvalue 
+Exp > IDD 
+IDD > lvalue 
+lvalue > Exp 
+lvalue '=' Exp > Exp 
 Exp > Stmt  
 Exp > IDD 
 IDD > lvalue 
@@ -256,26 +77,15 @@ Exp > Stmt
  > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
-close brace
-'{' SList '} > Block 
-IF Exp THEN Block > Stmt  
-Exp > IDD 
-IDD > lvalue 
-lvalue > Exp 
-'('Exp')' > Exp 
-PRINT Exp > Stmt  
- > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
-close brace
+-- close brace
 '{' SList '} > Block 
-FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  
+WHILE Exp DO Block > Stmt  
  > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
 Stmt ';' SList > SList  
-Stmt ';' SList > SList  
-Stmt ';' SList > SList  
-close brace
+-- close brace
 program ID > program 

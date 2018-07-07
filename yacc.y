@@ -1,6 +1,6 @@
 %{
 void yyerror (char *s);
-#include <stdio.h>     /* C declarations used in actions */
+#include <stdio.h>     
 #include <stdlib.h>
 #include <string.h>
 
@@ -46,6 +46,7 @@ int brace = 0;
 %token DOUBLE
 %token CHARACTER
 %token BOOLEAN
+%token CONSTANT
 %token FOR
 %token THEN
 %token STRING
@@ -127,6 +128,7 @@ Type:
 	| DOUBLE   		{ last_type = 2; }
 	| BOOLEAN  		{ last_type = 3; }
 	| CHARACTER  	{ last_type = 4; }
+	| CONSTANT		{ last_type = 5; }//constant_check();
 	;
 
 IDDim:
@@ -149,10 +151,10 @@ FuncDec:
 	//Type ID '(' ArgsList ')' '{' open_b SList '}'  ';' {printf("reduced FROM Type ID '(' ArgsList ')' '{' SList '}' ';' TO FuncDec \n");}
 	;
 open_b:
-               {printf("open brace\n");open_brace();}
+               {printf("-- open brace\n");open_brace();}
         ;
 close_b:
-               {printf("close brace\n");close_brace();}
+               {printf("-- close brace\n");close_brace();}
         ;
 ArgsList:
 	ArgList {printf("ArgList > ArgsList \n");}
@@ -165,35 +167,35 @@ ArgList:
 	;
 
 Arg:
-	Type IDList           {printf("Arg > Type IDList  \n");}
+	Type IDList           									{printf("Arg > Type IDList  \n");}
     ;
 
 SList:
-	Stmt ';' SList       {printf("Stmt ';' SList > SList  \n");}
-	|                     {printf(" > SList  \n");}
+	Stmt ';' SList       									{printf("Stmt ';' SList > SList  \n");}
+	|                     									{printf(" > SList  \n");}
 	;
 
 Stmt:
-	Exp                              {printf("Exp > Stmt  \n");}
-	| VarDecs                          {printf("VarDecs > Stmt  \n");}
-	| FOR lvalue '=' Exp '('valfor')' Exp DO Block{printf("FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  \n");}
-	| WHILE Exp DO Block           {printf("WHILE Exp DO Block > Stmt  \n");}  
-	| IF Exp THEN Block            {printf("IF Exp THEN Block > Stmt  \n");}
-	| IF Exp THEN Block ELSE Block {printf("IF Exp THEN Block ELSE Block > Stmt  \n");} 
-	| SWITCH Exp OF '{'open_b Cases '}'close_b  {printf("SWITCH Exp OF '{' Cases '}' > Stmt  \n");}
-	| BREAK                          {printf("BREAK > Stmt  \n");}
-	| REPEAT Block UNTIL Exp       {printf("REPEAT Block UNTIL Exp > Stmt  \n");}
-	| CONTINUE                       {printf("CONTINUE > Stmt  \n");}
-	| RETURN Exp                     {printf("RETURN Exp > Stmt  \n");} 
-	| PRINT Exp                      {printf("PRINT Exp > Stmt  \n");}
-	| WRITE ExpPlus                  {printf("WRITE ExpPlus > Stmt  \n");} 
-	| READ '(' lvalue ')'            {printf("READ '(' lvalue ')' > Stmt  \n");}
-	|                                  {printf(" > Stmt  \n");}
+	Exp                              						{printf("Exp > Stmt  \n");}
+	| VarDecs                          						{printf("VarDecs > Stmt  \n");}
+	| FOR lvalue '=' Exp '('valfor')' Exp DO Block			{printf("FOR lvalue '=' Exp '('valfor')' Exp DO Block > Stmt  \n");}
+	| WHILE Exp DO Block           							{printf("WHILE Exp DO Block > Stmt  \n");}  
+	| IF Exp THEN Block            							{printf("IF Exp THEN Block > Stmt  \n");}
+	| IF Exp THEN Block ELSE Block 							{printf("IF Exp THEN Block ELSE Block > Stmt  \n");} 
+	| SWITCH Exp OF '{'open_b Cases '}'close_b  			{printf("SWITCH Exp OF '{' Cases '}' > Stmt  \n");}
+	| BREAK                          						{printf("BREAK > Stmt  \n");}
+	| REPEAT Block UNTIL Exp       							{printf("REPEAT Block UNTIL Exp > Stmt  \n");}
+	| CONTINUE                       						{printf("CONTINUE > Stmt  \n");}
+	| RETURN Exp                     						{printf("RETURN Exp > Stmt  \n");} 
+	| PRINT Exp                      						{printf("PRINT Exp > Stmt  \n");}
+	| WRITE ExpPlus                  						{printf("WRITE ExpPlus > Stmt  \n");} 
+	| READ '(' lvalue ')'            						{printf("READ '(' lvalue ')' > Stmt  \n");}
+	|                                  						{printf(" > Stmt  \n");}
 	;
 
 valfor:
-	TO                                      {printf("TO  > valfor  \n");}
-	|DOWN TO                               {printf("DOWN TO  > valfor  \n");}
+	TO                                      				{printf("TO  > valfor  \n");}
+	|DOWN TO                               					{printf("DOWN TO  > valfor  \n");}
 	;
 
 Range:
@@ -264,7 +266,7 @@ Exp:
     | STRING                        {printf("STRING > Exp \n");}
     | '('Exp')'                       {printf("'('Exp')' > Exp \n");}
     | Exp IN Range                  {printf("Exp IN Range > Exp \n");}
-    | lvalue '=' Exp                  {printf("lvalue '=' Exp > Exp \n");}
+    | lvalue '=' Exp                  {printf("lvalue '=' Exp > Exp \n");}//check_value_defined($1);
     | ID'('ExpList')'                 {printf("ID'('ExpList')'  > Exp \n");}
     ; 
 

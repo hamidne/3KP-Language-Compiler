@@ -36,6 +36,7 @@ moreLineComment "/*"
 "double"        {return DOUBLE;}
 "char"          {return CHARACTER;}
 "bool"          {return BOOLEAN;}
+"constant"      {return CONSTANT;}
 ["].["]         {return STRING;}
 ['].[']         {return CHAR;}
 "program"       {return program;}
