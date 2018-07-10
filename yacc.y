@@ -18,8 +18,6 @@ struct func
 	char *args[10];
 	char args_count;
 };
-
-char *reserverFunction[20];
 char var_count = 0;
 char last_type = 0;
 struct var variables[128];
@@ -27,7 +25,7 @@ struct func functions[128];
 
 void handle_syntax_error();
 void declare_variable(char *id);
-
+int **functionTable;
 int cscope = 0;
 int declared[26];
 int scope[26]; 
@@ -97,7 +95,7 @@ Type:
 	;
 
 IDDim:
-	ID                     									{ declare_variable($1); printf("ID  > IDDim \n");}
+	ID                     									{declare_variable($1); printf("ID  > IDDim \n");lastID=$1;}
 	| IDDim '['IntNumber']'									{printf("IDDim '['IntNumber']'  > IDDim \n");}
 	;
 
@@ -107,12 +105,12 @@ IDDList:
 	;
 
 IDList:
-	ID                        {printf("ID  > IDList \n");}    
+	ID                        {printf("ID  > IDList \n");lastID=$1;}    
 	| ID ',' IDList           {printf("ID  IDList  > IDList \n");}
 	;
 
 FuncDec:
-        Type ID '(' ArgsList ')' {add_function($2);} '{' open_b SList '}' close_b ';' {printf("Type ID '(' ArgsList ')' '{' SList '}' ';' > FuncDec \n");}
+        Type ID '(' ArgsList ')' {check_function($2);} '{' open_b SList '}' close_b ';' {printf("Type ID '(' ArgsList ')' '{' SList '}' ';' > FuncDec \n");}
 	//Type ID '(' ArgsList ')' '{' open_b SList '}'  ';' {printf("reduced FROM Type ID '(' ArgsList ')' '{' SList '}' ';' TO FuncDec \n");}
 	;
 open_b:
@@ -132,7 +130,7 @@ ArgList:
 	;
 
 Arg:
-	Type IDList           									{printf("Arg > Type IDList  \n");}
+	Type IDList           									{printf("Type IDList > Arg  \n");}
     ;
 
 SList:
@@ -246,6 +244,7 @@ Block:
 
 int main (void)
 {
+	make_function_table();
 	return yyparse();
 }
 
@@ -254,7 +253,7 @@ void yyerror (char *s)
 	fprintf (stderr, "%s\n", s);
 }
 
-void declare_variable(char *id) {	
+void declare_variable(char *id) {
 	char find = 0;
 	// printf("line number : %d", lineNumber);
 	char i;
@@ -320,22 +319,33 @@ void handle_syntax_error(int code) {
 	
 }
 
-void add_function(char *id){
+void check_function(char *id){
+		printf("--Debugging:check_function called \n");
+	 
 	int find =0;
-	printf("--Debugging:add_function called \n");
 	
 		for(char  i = 0; i < functionCounter; i++){
-		if (strcmp(id, reserverFunction[i]) == 0)
+		if (strcmp(id, functionTable[i][0]) == 0)
 			find = 1;
 
 	}
 
 	
 	if (find == 0) {
-		reserverFunction[functionCounter]=id;
+		functionTable[functionCounter][0]=id;
 		functionCounter++;
 	}
 	else
 			printf(" -- Syntax Error : #%s# is an already declared function\n", id);
 	
+}
+void make_function_table(){
+	printf("--Debugging:make_function_table called \n");
+	    int r = 100, c = 100, i, j, count;
+ 
+    functionTable = (int **)malloc(r * sizeof(int *));
+    for (i=0; i<r; i++)
+         functionTable[i] = (int *)malloc(c * sizeof(int));
+
+ 
 }
