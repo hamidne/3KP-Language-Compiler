@@ -1,6 +1,10 @@
 
-# 3KP Language compiler
-
+<h1 align="center">3KP Language compiler</h1>
+<p align="center"> 
+  <a href=https://github.com/HamidNE1/3KP-Language-Compiler/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/HamidNE1/3KP-Language-Compiler.svg" alt="License">
+  </a>
+</p>
 
 ### run this commad : 
 start compile project with `make` command.
